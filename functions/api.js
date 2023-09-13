@@ -22,7 +22,7 @@ app.use('/api', router);
 //Last in list
 app.use(errorHandler);
 
-export const handler = serverless(app);
+module.exports = serverless(app);
 
 const start = async () => {
   try {
