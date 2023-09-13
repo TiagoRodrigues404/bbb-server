@@ -23,8 +23,9 @@ api.use('/api', router);
 //Last in list
 api.use(errorHandler);
 
-//const start = async () => {
-exports.handler = async (event, context) => {
+exports.handler = serverless(api);
+
+const start = async () => {
   try {
     await sequelize.authenticate();
     await sequelize.sync();
@@ -41,4 +42,4 @@ exports.handler = async (event, context) => {
   }
 };
 
-//start();
+start();
