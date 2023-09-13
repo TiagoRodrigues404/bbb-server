@@ -31,7 +31,7 @@ const start = async () => {
     app.listen(PORT, () => {
       console.log(`App running on port ${PORT}`.bgWhite.black);
     });
-    app.get('/api', (req, res) => {
+    app.get('/api/test', (req, res) => {
       res.json({
         message: 'Hello from backend bbb-server express.js',
       });
