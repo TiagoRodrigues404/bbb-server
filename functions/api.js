@@ -1,12 +1,12 @@
 require('dotenv').config();
 const express = require('express');
-const sequelize = require('./db');
+const sequelize = require('../db');
 const app = express();
-const models = require('./models/models');
+const models = require('../models/models');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
-const router = require('./routes/index');
-const errorHandler = require('./middleware/ErrorHandlingMiddleware');
+const router = require('../routes/index');
+const errorHandler = require('../middleware/ErrorHandlingMiddleware');
 const path = require('path');
 const colors = require('colors');
 const serverless = require('serverless-http');
@@ -22,7 +22,7 @@ app.use('/api', router);
 //Last in list
 app.use(errorHandler);
 
-export const handler = serverless(app);
+export const handler = serverless(api);
 
 const start = async () => {
   try {
