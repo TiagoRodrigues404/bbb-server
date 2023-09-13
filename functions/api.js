@@ -25,11 +25,7 @@ api.use(errorHandler);
 
 //const start = async () => {
 exports.handler = async (event, context) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ message: 'Hello World' }),
-  };
-  /*try {
+  try {
     await sequelize.authenticate();
     await sequelize.sync();
     api.listen(PORT, () => {
@@ -42,7 +38,7 @@ exports.handler = async (event, context) => {
     });
   } catch (e) {
     console.log(e);
-  }*/
+  }
 };
 
 //start();
