@@ -8,6 +8,7 @@ const fileUpload = require('express-fileupload');
 const router = require('./routes/index');
 const errorHandler = require('./middleware/ErrorHandlingMiddleware');
 const path = require('path');
+const colors = require('colors');
 
 const PORT = process.env.PORT || 3001;
 
@@ -25,7 +26,12 @@ const start = async () => {
     await sequelize.authenticate();
     await sequelize.sync();
     app.listen(PORT, () => {
-      console.log(`App running on port ${PORT}`);
+      console.log(`App running on port ${PORT}`.bgWhite.black);
+    });
+    app.get('/api', (req, res) => {
+      res.json({
+        message: 'Hello from backend bbb-server express.js',
+      });
     });
   } catch (e) {
     console.log(e);
