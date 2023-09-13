@@ -10,6 +10,7 @@ const errorHandler = require('../middleware/ErrorHandlingMiddleware');
 const path = require('path');
 const colors = require('colors');
 const serverless = require('serverless-http');
+const pg = require('pg');
 
 const PORT = process.env.PORT || 3001;
 
