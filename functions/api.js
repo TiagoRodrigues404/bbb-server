@@ -23,10 +23,13 @@ api.use('/api', router);
 //Last in list
 api.use(errorHandler);
 
-exports.handler = serverless(api);
-
-const start = async () => {
-  try {
+//const start = async () => {
+exports.handler = async (event, context) => {
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: 'Hello World' }),
+  };
+  /*try {
     await sequelize.authenticate();
     await sequelize.sync();
     api.listen(PORT, () => {
@@ -39,7 +42,7 @@ const start = async () => {
     });
   } catch (e) {
     console.log(e);
-  }
+  }*/
 };
 
-start();
+//start();
