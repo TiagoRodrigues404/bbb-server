@@ -2,9 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "bbb-server",
-  "main": "src/api.js",
+  "main": "functions/api.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon functions/api.js",
     "build": "echo Building Functions"
   },
   "keywords": [],
