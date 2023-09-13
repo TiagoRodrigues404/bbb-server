@@ -18,7 +18,7 @@ api.use(cors());
 api.use(express.json());
 api.use(express.static(path.resolve(__dirname, 'static')));
 api.use(fileUpload({}));
-api.use('/api', router);
+api.use('/.netlify/functions/api', router);
 
 //Last in list
 api.use(errorHandler);
@@ -32,7 +32,7 @@ const start = async () => {
     api.listen(PORT, () => {
       console.log(`App running on port ${PORT}`.bgWhite.black);
     });
-    api.get('/.netlify/functions/api/test', (req, res) => {
+    api.get('/test', (req, res) => {
       res.json({
         message: 'Hello from backend bbb-server express.js',
       });
