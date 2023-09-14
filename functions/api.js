@@ -27,9 +27,9 @@ const start = async () => {
   try {
     await sequelize.authenticate();
     await sequelize.sync();
-    app.listen(PORT, () => {
+    /*app.listen(PORT, () => {
       console.log(`App running on port ${PORT}`.bgWhite.black);
-    });
+    });*/
     app.get('/api', (req, res) => {
       res.json({
         message: 'Hello from backend bbb-server express.js',
