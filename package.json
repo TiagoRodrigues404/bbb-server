@@ -4,7 +4,7 @@
   "description": "bbb-server",
   "main": "functions/api.js",
   "scripts": {
-    "dev": "nodemon functions/api.js",
+    "dev": "nodemon index.js",
     "build": "echo Building Functions"
   },
   "keywords": [],

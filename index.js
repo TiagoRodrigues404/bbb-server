@@ -9,8 +9,8 @@ const router = require('../routes/index');
 const errorHandler = require('../middleware/ErrorHandlingMiddleware');
 const path = require('path');
 const colors = require('colors');
-const serverless = require('serverless-http');
-const pg = require('pg');
+
+const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -22,11 +22,13 @@ app.use('/api', router);
 app.use(errorHandler);
 
 const start = async () => {
-  exports.handler = serverless(app);
   try {
     await sequelize.authenticate();
     await sequelize.sync();
-    app.get('/api', (req, res) => {
+    app.listen(PORT, () => {
+      console.log(`App running on port ${PORT}`.bgWhite.black);
+    });
+    app.get('/', (req, res) => {
       res.json({
         message: 'Hello from backend bbb-server express.js',
       });
