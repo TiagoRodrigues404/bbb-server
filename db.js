@@ -2,9 +2,9 @@ const { Sequelize } = require('sequelize');
 const pg = require('pg');
 require('dotenv').config();
 
-module.exports = new Sequelize('BestBuyBeauty', 'postgres', 'root', {
+module.exports = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
   dialect: 'postgres',
-  host: '127.0.0.1',
+  host: process.env.DB_HOST,
   dialectModule: pg,
-  port: '5432',
+  port: process.env.DB_PORT,
 });
