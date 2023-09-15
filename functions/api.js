@@ -22,7 +22,6 @@ app.use('/api', router);
 app.use(errorHandler);
 
 exports.handler = serverless(app);
-
 const start = async () => {
   app.get('/api', (req, res) => {
     res.json({
