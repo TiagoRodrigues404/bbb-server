@@ -8,4 +8,15 @@ module.exports = new Sequelize('BestBuyBeauty', 'postgres', 'root', {
   dialectModule: pg,
   port: '5432',
   connect_timeout: '10',
+  pool: {
+    max: 2,
+
+    min: 0,
+
+    idle: 0,
+
+    acquire: 3000,
+
+    evict: CURRENT_LAMBDA_FUNCTION_TIMEOUT,
+  },
 });

@@ -11,6 +11,7 @@ const path = require('path');
 const colors = require('colors');
 const serverless = require('serverless-http');
 const pg = require('pg');
+const process = require('process');
 
 app.use(cors());
 app.use(express.json());
