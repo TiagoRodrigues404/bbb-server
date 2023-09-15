@@ -23,14 +23,14 @@ app.use(errorHandler);
 
 const start = async () => {
   exports.handler = serverless(app);
+  app.get('/api', (req, res) => {
+    res.json({
+      message: 'Hello from backend bbb-server express.js',
+    });
+  });
   try {
     await sequelize.authenticate();
     await sequelize.sync();
-    app.get('/api', (req, res) => {
-      res.json({
-        message: 'Hello from backend bbb-server express.js',
-      });
-    });
   } catch (e) {
     console.log(e);
   }
