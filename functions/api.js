@@ -21,8 +21,9 @@ app.use('/api', router);
 //Last in list
 app.use(errorHandler);
 
+exports.handler = serverless(app);
+
 const start = async () => {
-  exports.handler = serverless(app);
   app.get('/api', (req, res) => {
     res.json({
       message: 'Hello from backend bbb-server express.js',
