@@ -8,4 +8,5 @@ module.exports = new Sequelize('BestBuyBeauty', 'postgres', 'root', {
   dialectModule: pg,
   port: '5432',
   sslmode: 'prefer',
+  connect_timeout: '10',
 });
