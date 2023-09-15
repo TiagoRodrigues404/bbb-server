@@ -3,7 +3,7 @@ const pg = require('pg');
 require('dotenv').config();
 
 module.exports = new Sequelize('BestBuyBeauty', 'postgres', 'root', {
-  host: '35.156.224.161',
+  host: '127.0.0.1',
   dialect: 'postgres',
   dialectModule: pg,
   port: '5432',
