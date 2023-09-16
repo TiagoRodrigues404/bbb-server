@@ -19,9 +19,7 @@ app.use(fileUpload({}));
 app.use('/api', router);
 
 //Last in list
-app.use(errorHandler);
-
-exports.handler = serverless(app);
+//app.use(errorHandler);
 
 const start = async () => {
   app.get('/api', (req, res) => {
@@ -30,6 +28,7 @@ const start = async () => {
     });
   });
   try {
+    await sequelize.authenticate();
     await sequelize.sync();
     console.log('Connected !!!');
   } catch (e) {
@@ -38,3 +37,5 @@ const start = async () => {
 };
 
 start();
+
+module.exports.handler = serverless(app);
