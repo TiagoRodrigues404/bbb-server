@@ -19,7 +19,7 @@ app.use(fileUpload({}));
 app.use('/api', router);
 
 //Last in list
-//app.use(errorHandler);
+app.use(errorHandler);
 
 const start = async () => {
   app.get('/api', (req, res) => {
@@ -29,10 +29,9 @@ const start = async () => {
   });
   try {
     await sequelize.authenticate();
-    await sequelize.sync();
-    console.log('Connected !!!');
-  } catch (e) {
-    console.log('Didn`t connect', e);
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
   }
 };
 
