@@ -31,7 +31,7 @@ const start = async () => {
   });
   try {
     await sequelize.authenticate();
-    console.log('Connected!');
+    console.log('Connected !!!');
     //await sequelize.sync();
   } catch (e) {
     console.log('Didn`t connect', e);
