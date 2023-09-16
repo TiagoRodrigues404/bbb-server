@@ -21,12 +21,13 @@ app.use('/api', router);
 //Last in list
 app.use(errorHandler);
 
-const start = async () => {
-  app.get('/api', (req, res) => {
-    res.json({
-      message: 'Hello from backend bbb-server express.js',
-    });
+app.get('/api', (req, res) => {
+  res.json({
+    message: 'Hello from backend bbb-server express.js',
   });
+});
+
+const start = async () => {
   try {
     await sequelize.authenticate();
     console.log('Connection has been established successfully.');
@@ -34,7 +35,6 @@ const start = async () => {
     console.error('Unable to connect to the database:', error);
   }
 };
-
 start();
 
 module.exports.handler = serverless(app);
