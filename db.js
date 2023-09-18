@@ -16,5 +16,6 @@ module.exports = new Sequelize(
     dialect: 'postgres',
     dialectModule: pg,
     connect_timeout: '10',
+    sslmode: 'prefer',
   }
 );
