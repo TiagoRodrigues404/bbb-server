@@ -11,6 +11,7 @@ const path = require('path');
 const colors = require('colors');
 const serverless = require('serverless-http');
 const pg = require('pg');
+const pgp = require('pg-promise');
 
 app.use(cors());
 app.use(express.json());
@@ -30,6 +31,7 @@ app.get('/api', (req, res) => {
 const start = async () => {
   try {
     await sequelize.authenticate();
+    await sequelize.sync();
     console.log('Connection has been established successfully.');
   } catch (error) {
     console.error('Unable to connect to the database:', error);
