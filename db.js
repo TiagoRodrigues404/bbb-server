@@ -11,7 +11,7 @@ require('dotenv').config();
 });*/
 
 module.exports = new Sequelize(
-  'postgres://bbb_bky4_user:qy0JzJqEoH0mHWBSvsb0vhURcenslm0e@dpg-ck42gu6ru70s73du1qjg-a.oregon-postgres.render.com/bbb_bky4',
+  'postgres://bbb_bky4_user:qy0JzJqEoH0mHWBSvsb0vhURcenslm0e@dpg-ck42gu6ru70s73du1qjg-a.oregon-postgres.render.com/bbb_bky4?ssl=true',
   {
     dialect: 'postgres',
     dialectModule: pg,
