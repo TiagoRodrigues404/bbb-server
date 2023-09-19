@@ -1,5 +1,5 @@
 [build]
-  publish = "dist/"
+publish = "dist/" 
 [functions]
   directory = "./functions"
   external_node_modules = ["express"]
@@ -9,3 +9,8 @@
   from = "/api/*"
   status = 200
   to = "/.netlify/functions/api/:splat"
+[[redirects]]
+  force = true
+  from = "/static/*"
+  status = 200
+  to = "/.netlify/functions/static/:splat"
