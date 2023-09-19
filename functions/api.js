@@ -11,13 +11,32 @@ const path = require('path');
 const colors = require('colors');
 const serverless = require('serverless-http');
 const pg = require('pg');
-const pgp = require('pg-promise');
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'static')));
 app.use(fileUpload({}));
 app.use('/api', router);
+
+const setSecurityHeaders = (_, res, next) => {
+  res.set({
+    'X-Content-Type-Options': 'nosniff',
+    'X-Frame-Options': 'DENY',
+    'X-XSS-Protection': '1; mode=block',
+    'Cross-Origin-Resource-Policy': 'same-site',
+    'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
+    'Cross-Origin-Embedder-Policy': 'require-corp',
+    'Referrer-Policy': 'no-referrer',
+    'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
+    'Expect-CT': 'enforce, max-age=86400',
+    'Content-Security-Policy': `object-src 'none'; script-src 'self'; img-src 'self'; frame-ancestors 'self'; require-trusted-types-for 'script'; block-all-mixed-content; upgrade-insecure-requests`,
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
+  });
+  next();
+};
+
+app.disable('x-powered-by');
+app.use(setSecurityHeaders);
 
 //Last in list
 app.use(errorHandler);
@@ -39,4 +58,4 @@ const start = async () => {
 };
 start();
 
-module.exports.handler = serverless(app);
+exports.handler = serverless(app, { binary: true });
