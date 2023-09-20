@@ -43,7 +43,7 @@ app.use(errorHandler);
 
 app.get('/api', (req, res) => {
   res.json({
-    message: `Current directory: ${process.cwd()}`,
+    message: `Current directory: ${process.cwd()}, ${__dirname}`,
   });
 });
 
