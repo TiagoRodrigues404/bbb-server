@@ -15,7 +15,7 @@ const fs = require('fs');
 
 app.use(cors());
 app.use(express.json());
-app.use('/api', express.static(path.join(process.env.LAMBDA_TASK_ROOT, 'static')));
+app.use('/api', express.static(path.join('/dist', 'static')));
 app.use(fileUpload({}));
 app.use('/api', router);
 
@@ -44,7 +44,7 @@ app.use(errorHandler);
 
 app.get('/api', (req, res) => {
   res.json({
-    message: `Current directory: ${fs.readdirSync(__dirname)}`,
+    message: `Hi there!`,
   });
 });
 
