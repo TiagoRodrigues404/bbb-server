@@ -11,6 +11,7 @@ const path = require('path');
 const colors = require('colors');
 const serverless = require('serverless-http');
 const pg = require('pg');
+const fs = require('fs');
 
 app.use(cors());
 app.use(express.json());
@@ -43,7 +44,7 @@ app.use(errorHandler);
 
 app.get('/api', (req, res) => {
   res.json({
-    message: `Current directory: ${process.cwd()}, ${__dirname}`,
+    message: `Current directory: ${fs.readdirSync(process.cwd())}`,
   });
 });
 
