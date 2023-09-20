@@ -14,7 +14,7 @@ const pg = require('pg');
 
 app.use(cors());
 app.use(express.json());
-app.use('/api', express.static('static'));
+app.use('/api', express.static(path.join(process.env.LAMBDA_TASK_ROOT, 'static')));
 app.use(fileUpload({}));
 app.use('/api', router);
 
@@ -43,7 +43,7 @@ app.use(errorHandler);
 
 app.get('/api', (req, res) => {
   res.json({
-    message: `Current directory: ${process.cwd()}, ${__dirname}, ${process.env.LAMBDA_TASK_ROOT}`,
+    message: `Current directory: ${process.cwd()}, ${__dirname}`,
   });
 });
 
