@@ -44,7 +44,7 @@ app.use(errorHandler);
 
 app.get('/api', (req, res) => {
   res.json({
-    message: `Current directory: ${fs.readdirSync(process.cwd())}`,
+    message: `Current directory: ${fs.readdirSync(__dirname)}`,
   });
 });
 
