@@ -15,7 +15,7 @@ const fs = require('fs');
 
 app.use(cors());
 app.use(express.json());
-app.use('/api', express.static(path.join('/dist', 'static')));
+app.use('/api', express.static(path.join(process.cwd(), 'static')));
 app.use(fileUpload({}));
 app.use('/api', router);
 
