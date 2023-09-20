@@ -8,7 +8,7 @@ class BrandController {
     const { name } = req.body;
     const { img } = req.files;
     let fileName = uuid.v4() + '.jpg';
-    img.mv(path.resolve(__dirname, '..', 'static', fileName));
+    img.mv(path.join(process.cwd(), 'static', fileName));
     const brand = await Brand.create({ name, img: fileName });
     return res.json(brand);
   }
@@ -26,7 +26,7 @@ class BrandController {
     let { name } = req.body;
     const { img } = req.files;
     let fileName = uuid.v4() + '.jpg';
-    img.mv(path.resolve(__dirname, '..', 'static', fileName));
+    img.mv(path.join(process.cwd(), 'static', fileName));
     const options = { where: { id: brandId } };
     const brand = await Brand.update({ name, img: fileName }, options);
     return res.json(brand);

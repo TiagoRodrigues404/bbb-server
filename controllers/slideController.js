@@ -8,7 +8,7 @@ class SlideController {
     try {
       const { img } = req.files;
       let fileName = uuid.v4() + '.jpg';
-      img.mv(path.resolve(__dirname, '..', 'static', fileName));
+      img.mv(path.join(process.cwd(), 'static', fileName));
       const slide = await Slide.create({ img: fileName });
       return res.json(slide);
     } catch (e) {

@@ -8,7 +8,7 @@ class TypeController {
     let { name, categoryId } = req.body;
     const { img } = req.files;
     let fileName = uuid.v4() + '.jpg';
-    img.mv(path.resolve(__dirname, '..', 'static', fileName));
+    img.mv(path.join(process.cwd(), 'static', fileName));
     const type = await Type.create({ name, categoryId, img: fileName });
     return res.json(type);
   }
@@ -26,7 +26,7 @@ class TypeController {
     let { name, categoryId } = req.body;
     const { img } = req.files;
     let fileName = uuid.v4() + '.jpg';
-    img.mv(path.resolve(__dirname, '..', 'static', fileName));
+    img.mv(path.join(process.cwd(), 'static', fileName));
     const options = { where: { id: typeId } };
     const type = await Type.update({ name, categoryId, img: fileName }, options);
     return res.json(type);

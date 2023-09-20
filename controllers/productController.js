@@ -13,11 +13,11 @@ class ProductController {
       const { slide } = req.files;
       let fileName = uuid.v4() + '.jpg';
       let slideName = uuid.v4() + '.jpg';
-      img.mv(path.resolve(__dirname, '..', 'static', fileName));
+      img.mv(path.join(process.cwd(), 'static', fileName));
       if (slide.length > 1) {
-        slide.forEach((img, i) => img.mv(path.resolve(__dirname, '..', 'static', i + slideName)));
+        slide.forEach((img, i) => img.mv(path.join(process.cwd(), 'static', i + slideName)));
       } else {
-        slide.mv(path.resolve(__dirname, '..', 'static', slideName));
+        slide.mv(path.join(process.cwd(), 'static', slideName));
       }
 
       const product = await Product.create({
@@ -88,14 +88,14 @@ class ProductController {
     let slideName = uuid.v4() + '.jpg';
 
     if (img) {
-      img.mv(path.resolve(__dirname, '..', 'static', fileName));
+      img.mv(path.join(process.cwd(), 'static', fileName));
     }
 
     if (slide) {
       if (slide.length > 1) {
-        slide.forEach((img, i) => img.mv(path.resolve(__dirname, '..', 'static', i + slideName)));
+        slide.forEach((img, i) => img.mv(path.join(process.cwd(), 'static', i + slideName)));
       } else {
-        slide.mv(path.resolve(__dirname, '..', 'static', slideName));
+        slide.mv(path.join(process.cwd(), 'static', slideName));
       }
     }
 

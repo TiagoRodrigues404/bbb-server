@@ -12,4 +12,6 @@ app.use(express.json());
 app.use('/static', express.static(path.join(process.cwd(), 'static')));
 app.use(fileUpload({}));
 
+app.use(errorHandler);
+
 exports.handler = serverless(app, { binary: true });
