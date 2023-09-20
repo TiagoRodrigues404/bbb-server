@@ -14,8 +14,7 @@ const pg = require('pg');
 
 app.use(cors());
 app.use(express.json());
-app.use('/api', express.static(path.join('/opt/build/repo', 'static')));
-//app.use('/api', express.static(path.join(process.cwd(), 'static')));
+app.use('/api', express.static(path.join(process.cwd(), 'static')));
 app.use(fileUpload({}));
 app.use('/api', router);
 
@@ -44,7 +43,7 @@ app.use(errorHandler);
 
 app.get('/api', (req, res) => {
   res.json({
-    message: 'Hello from backend bbb-server express.js',
+    message: `Current directory: ${process.cwd()}`,
   });
 });
 
