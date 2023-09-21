@@ -16,7 +16,7 @@ const cloudinary = require('cloudinary');
 
 app.use(cors());
 app.use(express.json());
-app.use('/api', express.static(path.join(process.cwd(), 'images')));
+app.use('/api', express.static(path.join(process.cwd(), 'static')));
 app.use(fileUpload({}));
 app.use('/api', router);
 
