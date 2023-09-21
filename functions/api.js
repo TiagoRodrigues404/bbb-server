@@ -14,16 +14,18 @@ const pg = require('pg');
 const fs = require('fs');
 const cloudinary = require('cloudinary');
 
-app.use(cors());
+const corsOptions = { origin: 'https://best-buy-beauty.netlify.app' };
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use('/api', express.static(path.join(process.cwd(), 'static')));
 app.use(fileUpload({}));
 app.use('/api', router);
 
-app.use((req, res, next) => {
+/*app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   next();
-});
+});*/
 
 const setSecurityHeaders = (_, res, next) => {
   res.set({
