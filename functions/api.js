@@ -20,7 +20,7 @@ app.use('/api', express.static(path.join(process.cwd(), 'static')));
 app.use(fileUpload({}));
 app.use('/api', router);
 
-const setSecurityHeaders = (_, res, next) => {
+/*const setSecurityHeaders = (_, res, next) => {
   res.set({
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
@@ -35,7 +35,7 @@ const setSecurityHeaders = (_, res, next) => {
     'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
   });
   next();
-};
+};*/
 
 app.disable('x-powered-by');
 app.use(setSecurityHeaders);
