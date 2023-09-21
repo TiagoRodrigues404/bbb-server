@@ -9,3 +9,10 @@ publish = "dist/"
   from = "/api/*"
   status = 200
   to = "/.netlify/functions/api/:splat"
+[[plugins]]
+  package = "netlify-plugin-cloudinary"
+
+  [plugins.inputs]
+  cloudName = "bestbuybeautycloud"
+  imagesPath = "/static"
+  deliveryType = "upload"
