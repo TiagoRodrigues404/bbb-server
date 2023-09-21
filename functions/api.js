@@ -45,7 +45,7 @@ app.use(errorHandler);
 
 app.get('/api', (req, res) => {
   res.json({
-    message: `Hi there!`,
+    message: `${(process.cwd(), __dirname)}`,
   });
 });
 
