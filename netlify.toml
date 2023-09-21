@@ -14,5 +14,4 @@ publish = "dist/"
 
   [plugins.inputs]
   cloudName = "bestbuybeautycloud"
-  imagesPath = "/static"
   deliveryType = "upload"
