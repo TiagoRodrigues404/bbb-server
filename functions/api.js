@@ -12,6 +12,7 @@ const colors = require('colors');
 const serverless = require('serverless-http');
 const pg = require('pg');
 const fs = require('fs');
+const cloudinary = require('cloudinary');
 
 app.use(cors());
 app.use(express.json());
