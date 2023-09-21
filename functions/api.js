@@ -22,13 +22,9 @@ app.use('/api', express.static(path.join(process.cwd(), 'static')));
 app.use(fileUpload({}));
 app.use('/api', router);
 
-/*app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});*/
-
 const setSecurityHeaders = (_, res, next) => {
   res.set({
+    'Access-Control-Allow-Origin': '*',
     'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
     'X-XSS-Protection': '1; mode=block',
