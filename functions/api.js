@@ -37,8 +37,8 @@ app.use('/api', router);
   next();
 };*/
 
-app.disable('x-powered-by');
-app.use(setSecurityHeaders);
+//app.disable('x-powered-by');
+//app.use(setSecurityHeaders);
 
 //Last in list
 app.use(errorHandler);
