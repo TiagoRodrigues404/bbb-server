@@ -15,7 +15,10 @@ const pg = require('pg');
 const fs = require('fs');
 const cloudinary = require('cloudinary');
 
-const corsOptions = { origin: 'https://best-buy-beauty.netlify.app' };
+const corsOptions = {
+  origin: 'https://best-buy-beauty.netlify.app',
+  origin: 'https://bbb-server.netlify.app',
+};
 
 app.use(cors(corsOptions));
 app.use(express.json());
