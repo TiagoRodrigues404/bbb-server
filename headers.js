@@ -3,7 +3,7 @@ module.exports = (_, res, next) => {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers':
       'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
     'Access-Control-Allow-Credentials': true,
     /*'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
