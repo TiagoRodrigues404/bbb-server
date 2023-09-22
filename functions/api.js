@@ -35,7 +35,7 @@ app.get('/api', (req, res) => {
   });
 });
 
-callback('/api', {
+/*callback('/api', {
   statusCode: 200,
   body: 'Hello world!',
   headers: {
@@ -44,7 +44,7 @@ callback('/api', {
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Credentials': 'true',
   },
-});
+});*/
 
 const start = async () => {
   try {
