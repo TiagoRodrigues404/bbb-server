@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const sequelize = require('../db');
 const app = express();
-//const setSecurityHeaders = require('../headers.js');
+const setSecurityHeaders = require('../headers.js');
 const models = require('../models/models');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
@@ -26,8 +26,8 @@ app.use('/api', express.static(path.join(process.cwd(), 'static')));
 app.use(fileUpload({}));
 app.use('/api', router);
 
-//app.disable('x-powered-by');
-//app.use(setSecurityHeaders);
+app.disable('x-powered-by');
+app.use(setSecurityHeaders);
 
 //Last in list
 app.use(errorHandler);
@@ -51,13 +51,4 @@ start();
 
 exports.handler = serverless(app, {
   binary: true,
-  statusCode: 200,
-  body: 'Hello world!',
-  headers: {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers':
-      'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-    'Access-Control-Allow-Credentials': true,
-  },
 });

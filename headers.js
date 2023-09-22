@@ -1,7 +1,11 @@
 module.exports = (_, res, next) => {
   res.set({
     'Access-Control-Allow-Origin': '*',
-    'X-Content-Type-Options': 'nosniff',
+    'Access-Control-Allow-Headers':
+      'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Credentials': true,
+    /*'X-Content-Type-Options': 'nosniff',
     'X-Frame-Options': 'DENY',
     'X-XSS-Protection': '1; mode=block',
     'Cross-Origin-Resource-Policy': 'same-site',
@@ -11,7 +15,7 @@ module.exports = (_, res, next) => {
     'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
     'Expect-CT': 'enforce, max-age=86400',
     'Content-Security-Policy': `object-src 'none'; script-src 'self'; img-src 'self'; frame-ancestors 'self'; require-trusted-types-for 'script'; block-all-mixed-content; upgrade-insecure-requests`,
-    'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
+    'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',*/
   });
   next();
 };
