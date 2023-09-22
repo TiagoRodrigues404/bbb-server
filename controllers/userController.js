@@ -4,7 +4,9 @@ const jwt = require('jsonwebtoken');
 const { User, Basket, UserOrder, OrderItem, UserAddress } = require('../models/models');
 
 const generateJwt = (id, email, role) => {
-  return jwt.sign({ id, email, role }, process.env.SECRET_KEY, { expiresIn: '24h' });
+  return jwt.sign({ id, email, role }, SECRET_KEY ? SECRET_KEY : process.env.SECRET_KEY, {
+    expiresIn: '24h',
+  });
 };
 
 class UserController {
