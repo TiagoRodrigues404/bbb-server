@@ -35,6 +35,20 @@ app.get('/api', (req, res) => {
   });
 });
 
+<<<<<<< HEAD
+=======
+/*callback('/api', {
+  statusCode: 200,
+  body: 'Hello world!',
+  headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Credentials': 'true',
+  },
+});*/
+
+>>>>>>> 6f7aa88ba3674fd4e4f22646a30d3a7ae69b91ce
 const start = async () => {
   try {
     await sequelize.authenticate();
