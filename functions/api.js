@@ -35,16 +35,16 @@ app.get('/api', (req, res) => {
   });
 });
 
-callback(null, {
+callback('/api', {
   statusCode: 200,
   body: 'Hello world!',
   headers: {
-    'ACCESS-CONTROL-ALLOW-ORIGIN': '*',
-    'ACCESS-CONTROL-ALLOW-HEADERS': 'Content-Type',
-    'ACCESS-CONTROL-ALLOW-METHODS': 'GET, POST, PUT, DELETE, OPTIONS',
-    'ACCESS-CONTROL-ALLOW-CREDENTIALS': true,
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+    'Access-Control-Allow-Credentials': 'true',
   },
-}); 
+});
 
 const start = async () => {
   try {
