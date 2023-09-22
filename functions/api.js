@@ -15,12 +15,12 @@ const pg = require('pg');
 const fs = require('fs');
 const cloudinary = require('cloudinary');
 
-const corsOptions = {
+/*const corsOptions = {
   origin: 'https://best-buy-beauty.netlify.app',
   origin: 'https://bbb-server.netlify.app',
-};
+};*/
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use('/api', express.static(path.join(process.cwd(), 'static')));
 app.use(fileUpload({}));
@@ -34,7 +34,7 @@ app.use(errorHandler);
 
 app.get('/api', (req, res) => {
   res.json({
-    message: `${process.cwd()}, ${__dirname}`,
+    message: `Hi from express.js server!`,
   });
 });
 
