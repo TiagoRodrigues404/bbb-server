@@ -10,7 +10,7 @@ module.exports = function (role) {
       if (!token) {
         return res.status(401).json({ message: 'User not authorized' });
       }
-      const decoded = jwt.verify(token, SECRET_KEY ? SECRET_KEY : process.env.SECRET_KEY);
+      const decoded = jwt.verify(token, process.env.SECRET_KEY);
       if (decoded.role !== role) {
         return res.status(403).json({ message: 'No access' });
       }
