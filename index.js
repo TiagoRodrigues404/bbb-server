@@ -1,4 +1,4 @@
-/*require('dotenv').config();
+require('dotenv').config();
 const express = require('express');
 const sequelize = require('./db');
 const app = express();
@@ -38,4 +38,4 @@ const start = async () => {
   }
 };
 
-start();*/
+start();
