@@ -62,7 +62,7 @@ class UserController {
   }
 
   async getAll(req, res) {
-    const { role, email } = req.query;
+    const { role } = req.query;
     let options = {
       where: {},
       include: [
@@ -80,14 +80,11 @@ class UserController {
     if (role) {
       options.where = { ...options.where, role };
     }
-    if (email) {
-      options.where = { ...options.where, email };
-    }
     const users = await User.findAll(options);
     return res.json(users);
   }
 
-  async getOne(req, res) {
+  async getById(req, res) {
     const { id } = req.params;
     let options = {
       where: {},
@@ -101,6 +98,25 @@ class UserController {
     };
     if (id) {
       options.where = { ...options.where, id };
+    }
+    const user = await User.findOne(options);
+    return res.json(user);
+  }
+
+  async getOne(req, res) {
+    const { email } = req.query;
+    let options = {
+      where: {},
+      include: [
+        { model: UserOrder, as: 'order', include: [{ model: OrderItem, as: 'item' }] },
+        {
+          model: UserAddress,
+          as: 'address',
+        },
+      ],
+    };
+    if (email) {
+      options.where = { ...options.where, email };
     }
     const user = await User.findOne(options);
     return res.json(user);
