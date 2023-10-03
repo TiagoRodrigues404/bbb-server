@@ -19,8 +19,8 @@ class ProductController {
       }
       let fileName = uuid.v4() + '.jpg';
       let slideName = uuid.v4() + '.jpg';
-      await upload(img.tempFilePath);
-      await upload(slide.forEach((img, i) => img.tempFilePath));
+      await upload(img);
+      await upload(slide);
       /*if (slide.length > 1) {
         slide.forEach((img, i) => img.mv(path.join(process.cwd(), 'static', i + slideName)));
       } else {
