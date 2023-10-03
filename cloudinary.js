@@ -14,14 +14,4 @@ const upload = async file => {
   return image;
 };
 
-const uploadSlides = async files => {
-  const slides = await cloudinary.uploader.upload.array(
-    files,
-    10,
-    { folder: 'static' },
-    result => result
-  );
-  return slides;
-};
-
-module.exports = { upload, uploadSlides };
+module.exports = { upload };
