@@ -5,28 +5,19 @@ const app = express();
 const models = require('./models/models');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
+const { upload } = require('./cloudinary');
 const router = require('./routes/index');
 const errorHandler = require('./middleware/ErrorHandlingMiddleware');
 const path = require('path');
 const colors = require('colors');
+const { setSecurityHeaders } = require('./security');
 
 const PORT = process.env.PORT || 3001;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(path.resolve(__dirname, 'static')));
-app.use(fileUpload({}));
-
-const setSecurityHeaders = (_, res, next) => {
-  res.set({
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers':
-      'Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
-    'Access-Control-Allow-Credentials': true,
-  });
-  next();
-};
+//app.use(express.static(path.resolve(__dirname, 'static')));
+app.use(fileUpload({ useTempFiles: true }));
 
 app.use(setSecurityHeaders);
 app.use('/api', router);
@@ -43,7 +34,7 @@ const start = async () => {
     });
     app.get('/', (req, res) => {
       res.json({
-        message: 'Hello from backend bbb-server express.js',
+        message: 'Hello from backend bbb-server express.js!',
       });
     });
   } catch (e) {

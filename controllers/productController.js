@@ -9,16 +9,23 @@ class ProductController {
   async create(req, res, next) {
     try {
       let { name, code, price, brandId, typeId, info, isLashes, text } = req.body;
+      if (!req.files) return res.send('Please upload an image');
       const { img } = req.files;
       const { slide } = req.files;
+      const fileTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+      if (!fileTypes.includes(img.mimetype) || !fileTypes.includes(slide.mimetype)) {
+        return res.send('Image formats supported: JPG, PNG, JPEG');
+      }
       let fileName = uuid.v4() + '.jpg';
       let slideName = uuid.v4() + '.jpg';
-      img.mv(path.join(process.cwd(), 'static', fileName));
-      if (slide.length > 1) {
+      const cloudFile = await upload(img.tempFilePath);
+      const cloudSlideFile = await upload(slide.tempFilePath);
+      console.log(cloudFile, cloudSlideFile);
+      /*if (slide.length > 1) {
         slide.forEach((img, i) => img.mv(path.join(process.cwd(), 'static', i + slideName)));
       } else {
         slide.mv(path.join(process.cwd(), 'static', slideName));
-      }
+      }*/
 
       const product = await Product.create({
         name,
@@ -66,6 +73,11 @@ class ProductController {
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
+    res.status(201).json({
+      message: 'Images uploaded successfully',
+      imageUrl: cloudFile.url,
+      slideUrl: cloudSlideFile.url,
+    });
   }
 
   async destroy(req, res) {
