@@ -37,7 +37,7 @@ class ProductController {
         price,
         brandId,
         typeId,
-        img: cloudFile.fileName,
+        img: fileName,
         isLashes,
       });
 
