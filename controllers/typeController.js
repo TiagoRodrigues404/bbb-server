@@ -2,13 +2,15 @@ const { Type } = require('../models/models');
 const ApiError = require('../error/ApiError');
 const uuid = require('uuid');
 const path = require('path');
+const { upload } = require('../cloudinary');
 
 class TypeController {
   async create(req, res) {
     let { name, categoryId } = req.body;
     const { img } = req.files;
     let fileName = uuid.v4() + '.jpg';
-    img.mv(path.join(process.cwd(), 'static', fileName));
+    //img.mv(path.join(process.cwd(), 'static', fileName));
+    await upload(img.tempFilePath);
     const type = await Type.create({ name, categoryId, img: fileName });
     return res.json(type);
   }

@@ -2,13 +2,15 @@ const uuid = require('uuid');
 const path = require('path');
 const { Slide } = require('../models/models');
 const ApiError = require('../error/ApiError');
+const { upload } = require('../cloudinary');
 
 class SlideController {
   async create(req, res, next) {
     try {
       const { img } = req.files;
       let fileName = uuid.v4() + '.jpg';
-      img.mv(path.join(process.cwd(), 'static', fileName));
+      //img.mv(path.join(process.cwd(), 'static', fileName));
+      await upload(img.tempFilePath);
       const slide = await Slide.create({ img: fileName });
       return res.json(slide);
     } catch (e) {

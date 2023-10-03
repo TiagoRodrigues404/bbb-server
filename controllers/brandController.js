@@ -2,13 +2,15 @@ const uuid = require('uuid');
 const path = require('path');
 const { Brand } = require('../models/models');
 const ApiError = require('../error/ApiError');
+const { upload } = require('../cloudinary');
 
 class BrandController {
   async create(req, res) {
     const { name } = req.body;
     const { img } = req.files;
     let fileName = uuid.v4() + '.jpg';
-    img.mv(path.join(process.cwd(), 'static', fileName));
+    await upload(img.tempFilePath);
+    //img.mv(path.join(process.cwd(), 'static', fileName));
     const brand = await Brand.create({ name, img: fileName });
     return res.json(brand);
   }
