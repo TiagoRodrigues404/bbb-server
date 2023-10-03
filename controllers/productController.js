@@ -23,7 +23,7 @@ class ProductController {
       if (slide.length > 1) {
         slide.forEach(async (image, i) => await upload(image.tempFilePath));
       } else {
-        await upload(slide.tempFilePath);
+        const slideFile = await upload(slide.tempFilePath);
       }
       /*if (slide.length > 1) {
         slide.forEach((img, i) => img.mv(path.join(process.cwd(), 'static', i + slideName)));
@@ -37,7 +37,7 @@ class ProductController {
         price,
         brandId,
         typeId,
-        img: fileName,
+        img: cloudFile.fileName,
         isLashes,
       });
 
