@@ -4,7 +4,7 @@ const uuid = require('uuid');
 const path = require('path');
 const { Product, ProductInfo, ProductSlide, ProductText } = require('../models/models');
 const ApiError = require('../error/ApiError');
-const { upload } = require('../cloudinary');
+const { upload, uploadSlides } = require('../cloudinary');
 
 class ProductController {
   async create(req, res, next) {
@@ -21,9 +21,7 @@ class ProductController {
       let slideName = uuid.v4() + '.jpg';
       const cloudFile = await upload(img.tempFilePath);
       if (slide.length > 1) {
-        slide.forEach((img, i) => {
-          upload(img.tempFilePath);
-        });
+        await uploadSlides(slide.tempFilePath);
       } else {
         await upload(slide.tempFilePath);
       }
