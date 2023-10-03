@@ -5,7 +5,6 @@ const app = express();
 const models = require('./models/models');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
-const { upload } = require('./cloudinary');
 const router = require('./routes/index');
 const errorHandler = require('./middleware/ErrorHandlingMiddleware');
 const path = require('path');

@@ -4,6 +4,7 @@ const uuid = require('uuid');
 const path = require('path');
 const { Product, ProductInfo, ProductSlide, ProductText } = require('../models/models');
 const ApiError = require('../error/ApiError');
+const { upload } = require('../cloudinary');
 
 class ProductController {
   async create(req, res, next) {
