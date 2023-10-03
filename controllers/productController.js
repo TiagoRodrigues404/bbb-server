@@ -14,7 +14,7 @@ class ProductController {
       const { img } = req.files;
       const { slide } = req.files;
       const fileTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-      if (!fileTypes.includes(img.mimetype) || !fileTypes.includes(slide.mimetype)) {
+      if (!fileTypes.includes(img.mimetype)) {
         return res.send('Image formats supported: JPG, PNG, JPEG');
       }
       let fileName = uuid.v4() + '.jpg';
