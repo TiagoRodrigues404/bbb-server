@@ -19,9 +19,8 @@ class ProductController {
       }
       let fileName = uuid.v4() + '.jpg';
       let slideName = uuid.v4() + '.jpg';
-      const cloudFile = await upload(img.tempFilePath);
-      const cloudSlideFile = await upload(slide.tempFilePath);
-      console.log(cloudFile, cloudSlideFile);
+      await upload(img.tempFilePath);
+      await upload(slide.forEach((img, i) => img.tempFilePath));
       /*if (slide.length > 1) {
         slide.forEach((img, i) => img.mv(path.join(process.cwd(), 'static', i + slideName)));
       } else {
@@ -74,11 +73,6 @@ class ProductController {
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
-    res.status(201).json({
-      message: 'Images uploaded successfully',
-      imageUrl: cloudFile.url,
-      slideUrl: cloudSlideFile.url,
-    });
   }
 
   async destroy(req, res) {
