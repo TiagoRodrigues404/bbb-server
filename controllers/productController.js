@@ -25,7 +25,7 @@ class ProductController {
       if (slide.length > 1) {
         slide.forEach(async (image, i) => {
           const slidesFile = await upload(image.tempFilePath);
-          slideFiles.push(slidesFile);
+          slideFiles = [...slideFiles, slidesFile];
         });
       } else {
         slideFile = await upload(slide.tempFilePath);
