@@ -22,8 +22,8 @@ class ProductController {
       let arr = [];
       if (slide.length > 1) {
         await slide.forEach((image, i) => {
-          const oneSlide = upload(image.tempFilePath);
-          arr = [...arr, oneSlide.secure_url];
+          let oneSlide = upload(image.tempFilePath);
+          arr.push(oneSlide.secure_url);
         });
       } else {
         slideFile = await upload(slide.tempFilePath);
