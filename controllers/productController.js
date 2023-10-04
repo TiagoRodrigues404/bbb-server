@@ -59,9 +59,12 @@ class ProductController {
       if (slide.length > 1) {
         slide.forEach((img, i) => {
           ProductSlide.create({
-            slideImg: arrFiles[i].secure_url,
+            slideImg: arrFiles[i].secure_url ? arrFiles[i].secure_url : 'test',
             productId: product.id,
           });
+        });
+        return res.status(201).json({
+          message: `Ooops, ${arrFiles}`,
         });
       } else {
         ProductSlide.create({
@@ -73,9 +76,6 @@ class ProductController {
       return res.json(product);
     } catch (e) {
       next(ApiError.badRequest(e.message));
-      return res.json({
-        message: `Ooops, ${arrFiles}`,
-      });
     }
   }
 
