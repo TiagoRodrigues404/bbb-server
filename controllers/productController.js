@@ -25,11 +25,6 @@ class ProductController {
       } else {
         const slideFile = await upload(slide.tempFilePath);
       }
-      /*if (slide.length > 1) {
-        slide.forEach((img, i) => img.mv(path.join(process.cwd(), 'static', i + slideName)));
-      } else {
-        slide.mv(path.join(process.cwd(), 'static', slideName));
-      }*/
 
       const product = await Product.create({
         name,
@@ -37,7 +32,7 @@ class ProductController {
         price,
         brandId,
         typeId,
-        img: fileName,
+        img: cloudFile.public_id,
         isLashes,
       });
 
@@ -99,14 +94,14 @@ class ProductController {
     let slideName = uuid.v4() + '.jpg';
 
     if (img) {
-      img.mv(path.join(process.cwd(), 'static', fileName));
+      await upload(img.tempFilePath);
     }
 
     if (slide) {
       if (slide.length > 1) {
-        slide.forEach((img, i) => img.mv(path.join(process.cwd(), 'static', i + slideName)));
+        slide.forEach(async (image, i) => await upload(image.tempFilePath));
       } else {
-        slide.mv(path.join(process.cwd(), 'static', slideName));
+        const slideFile = await upload(slide.tempFilePath);
       }
     }
 
