@@ -23,7 +23,10 @@ class ProductController {
       let slideFile = {};
       let slideFiles = [];
       if (slide.length > 1) {
-        slide.forEach(async (image, i) => slideFiles.push(await upload(image.tempFilePath)));
+        slide.forEach(async (image, i) => {
+          let slidesFile = await upload(image.tempFilePath);
+          slideFiles = [...slideFiles, slidesFile];
+        });
       } else {
         slideFile = await upload(slide.tempFilePath);
       }
@@ -56,13 +59,15 @@ class ProductController {
         );
       }
 
-      if (slide.length > 1 && slideFiles.length > 1) {
-        slideFiles.forEach(i => {
-          ProductSlide.create({
-            slideImg: i.secure_url,
-            productId: product.id,
+      if (slide.length > 1) {
+        if (slideFiles.length) {
+          slideFiles.forEach(i => {
+            ProductSlide.create({
+              slideImg: i.secure_url,
+              productId: product.id,
+            });
           });
-        });
+        }
       } else {
         ProductSlide.create({
           slideImg: slideFile.secure_url,
