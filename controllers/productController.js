@@ -19,11 +19,10 @@ class ProductController {
       }
       const cloudFile = await upload(img.tempFilePath);
       let slideFile = {};
-      let arrSlides = [];
+      let arrFiles = [];
       if (slide.length > 1) {
-        slide.map(async (image, i) => {
-          arrSlides.push(await upload(image.tempFilePath));
-          arrSlides.push({ secure_url: 'hhgfdd' });
+        arrFiles = slide.map(async (image, i) => {
+          await upload(image.tempFilePath);
         });
       } else {
         slideFile = await upload(slide.tempFilePath);
