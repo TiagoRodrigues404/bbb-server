@@ -19,14 +19,10 @@ class ProductController {
       }
       const cloudFile = await upload(img.tempFilePath);
       let slideFile = {};
-      let slideFiles = [];
+      let arrFiles = [];
       if (slide.length > 1) {
         slide.forEach(async image => {
-          let slidesFile = await upload(image.tempFilePath);
-          if (slidesFile) {
-            let url = slidesFile.secure_url;
-            slideFiles.push(url);
-          }
+          arrFiles = [...arrFiles, await upload(image.tempFilePath)];
         });
       } else {
         slideFile = await upload(slide.tempFilePath);
@@ -63,7 +59,7 @@ class ProductController {
       if (slide.length > 1) {
         slide.forEach((img, i) => {
           ProductSlide.create({
-            slideImg: slideFiles[i] ? slideFiles[i] : 'test' + slideFiles[0],
+            slideImg: arrFiles[i].secure_url,
             productId: product.id,
           });
         });
