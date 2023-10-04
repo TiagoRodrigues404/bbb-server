@@ -34,7 +34,7 @@ class ProductController {
         price,
         brandId,
         typeId,
-        img: cloudFile.url,
+        img: cloudFile.secure_url,
         isLashes,
       });
 
@@ -59,13 +59,13 @@ class ProductController {
       if (slide.length > 1) {
         slide.forEach((img, i) => {
           ProductSlide.create({
-            slideImg: slideFiles[i].url,
+            slideImg: slideFiles[i].secure_url,
             productId: product.id,
           });
         });
       } else {
         ProductSlide.create({
-          slideImg: slideFile.url,
+          slideImg: slideFile.secure_url,
           productId: product.id,
         });
       }
