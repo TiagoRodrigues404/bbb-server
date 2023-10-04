@@ -20,6 +20,7 @@ class ProductController {
       let fileName = uuid.v4() + '.jpg';
       let slideName = uuid.v4() + '.jpg';
       const cloudFile = await upload(img.tempFilePath);
+      console.log(cloudFile);
       if (slide.length > 1) {
         slide.forEach(async (image, i) => await upload(image.tempFilePath));
       } else {
@@ -32,7 +33,7 @@ class ProductController {
         price,
         brandId,
         typeId,
-        img: cloudFile.public_id,
+        img: cloudFile.original_filename,
         isLashes,
       });
 
