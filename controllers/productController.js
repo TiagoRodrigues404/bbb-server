@@ -58,14 +58,12 @@ class ProductController {
       }
 
       if (slide.length > 1) {
-        if (slideFiles.length > 1) {
-          slideFiles.forEach(url => {
-            ProductSlide.create({
-              slideImg: url,
-              productId: product.id,
-            });
+        slide.forEach((img, i) => {
+          ProductSlide.create({
+            slideImg: slideFiles[i] ? slideFiles[i] : 'test' + slideFiles[0],
+            productId: product.id,
           });
-        }
+        });
       } else {
         ProductSlide.create({
           slideImg: slideFile.secure_url,
