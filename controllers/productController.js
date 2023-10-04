@@ -57,14 +57,12 @@ class ProductController {
       }
 
       if (slide.length > 1) {
+        arrFiles = JSON.stringify(arrFiles);
         slide.forEach((img, i) => {
           ProductSlide.create({
-            slideImg: arrFiles[i].secure_url ? arrFiles[i].secure_url : 'test',
+            slideImg: arrFiles,
             productId: product.id,
           });
-        });
-        return res.status(201).json({
-          message: `Ooops, ${arrFiles}`,
         });
       } else {
         ProductSlide.create({
