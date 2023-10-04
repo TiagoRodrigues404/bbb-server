@@ -60,9 +60,9 @@ class ProductController {
       }
 
       if (slide.length > 1) {
-        slideFiles.forEach((img, i) => {
+        slide.forEach((img, i) => {
           ProductSlide.create({
-            slideImg: img.secure_url,
+            slideImg: slideFiles[i].secure_url,
             productId: product.id,
           });
         });

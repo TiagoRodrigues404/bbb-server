@@ -8,9 +8,8 @@ class TypeController {
   async create(req, res) {
     let { name, categoryId } = req.body;
     const { img } = req.files;
-    let fileName = uuid.v4() + '.jpg';
-    await upload(img.tempFilePath);
-    const type = await Type.create({ name, categoryId, img: fileName });
+    const cloudFile = await upload(img.tempFilePath);
+    const type = await Type.create({ name, categoryId, img: cloudFile.secure_url });
     return res.json(type);
   }
 
@@ -26,10 +25,9 @@ class TypeController {
     const typeId = req.params.id;
     let { name, categoryId } = req.body;
     const { img } = req.files;
-    let fileName = uuid.v4() + '.jpg';
-    await upload(img.tempFilePath);
+    const cloudFile = await upload(img.tempFilePath);
     const options = { where: { id: typeId } };
-    const type = await Type.update({ name, categoryId, img: fileName }, options);
+    const type = await Type.update({ name, categoryId, img: cloudFile.secure_url }, options);
     return res.json(type);
   }
 

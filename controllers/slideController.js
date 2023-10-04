@@ -8,9 +8,8 @@ class SlideController {
   async create(req, res, next) {
     try {
       const { img } = req.files;
-      let fileName = uuid.v4() + '.jpg';
-      await upload(img.tempFilePath);
-      const slide = await Slide.create({ img: fileName });
+      const cloudFile = await upload(img.tempFilePath);
+      const slide = await Slide.create({ img: cloudFile.secure_url });
       return res.json(slide);
     } catch (e) {
       next(ApiError.badRequest(e.message));

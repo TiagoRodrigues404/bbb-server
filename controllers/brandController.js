@@ -8,9 +8,8 @@ class BrandController {
   async create(req, res) {
     const { name } = req.body;
     const { img } = req.files;
-    let fileName = uuid.v4() + '.jpg';
-    await upload(img.tempFilePath);
-    const brand = await Brand.create({ name, img: fileName });
+    const cloudFile = await upload(img.tempFilePath);
+    const brand = await Brand.create({ name, img: cloudFile.secure_url });
     return res.json(brand);
   }
 
@@ -27,9 +26,9 @@ class BrandController {
     let { name } = req.body;
     const { img } = req.files;
     let fileName = uuid.v4() + '.jpg';
-    await upload(img.tempFilePath);
+    const cloudFile = await upload(img.tempFilePath);
     const options = { where: { id: brandId } };
-    const brand = await Brand.update({ name, img: fileName }, options);
+    const brand = await Brand.update({ name, img: cloudFile.secure_url }, options);
     return res.json(brand);
   }
 
