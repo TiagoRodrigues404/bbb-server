@@ -12,17 +12,18 @@ class ProductController {
       let { name, code, price, brandId, typeId, info, isLashes, text } = req.body;
       if (!req.files) return res.send('Please upload an image');
       const { img } = req.files;
-      let { slide } = req.files;
+      const { slide } = req.files;
       const fileTypes = ['image/jpeg', 'image/png', 'image/jpg'];
       if (!fileTypes.includes(img.mimetype)) {
         return res.send('Image formats supported: JPG, PNG, JPEG');
       }
       const cloudFile = await upload(img.tempFilePath);
       let slideFile = {};
+      let arr = [];
       if (slide.length > 1) {
-        slide.forEach(async image => {
-          const oneSlide = await upload(image.tempFilePath);
-          image.secure_url = oneSlide.secure_url;
+        await slide.forEach((image, i) => {
+          const oneSlide = upload(image.tempFilePath);
+          arr = [...arr, oneSlide.secure_url];
         });
       } else {
         slideFile = await upload(slide.tempFilePath);
@@ -59,7 +60,7 @@ class ProductController {
       if (slide.length > 1) {
         slide.forEach((img, i) => {
           ProductSlide.create({
-            slideImg: img.secure_url,
+            slideImg: arr[i],
             productId: product.id,
           });
         });
