@@ -23,7 +23,6 @@ class ProductController {
       if (slide.length > 1) {
         slide.forEach(async image => {
           arrFiles = [...arrFiles, await upload(image.tempFilePath)];
-          return res.json(arrFiles);
         });
       } else {
         slideFile = await upload(slide.tempFilePath);
@@ -74,6 +73,9 @@ class ProductController {
       return res.json(product);
     } catch (e) {
       next(ApiError.badRequest(e.message));
+      return res.json({
+        message: `Ooops, ${arrFiles}`,
+      });
     }
   }
 
