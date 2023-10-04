@@ -17,15 +17,13 @@ class ProductController {
       if (!fileTypes.includes(img.mimetype)) {
         return res.send('Image formats supported: JPG, PNG, JPEG');
       }
-      let fileName = uuid.v4() + '.jpg';
-      let slideName = uuid.v4() + '.jpg';
       const cloudFile = await upload(img.tempFilePath);
       let slideFile = {};
-      let slideFiles = [];
+      const slideFiles = [];
       if (slide.length > 1) {
         slide.forEach(async (image, i) => {
-          let slidesFile = await upload(image.tempFilePath);
-          slideFiles = [...slideFiles, slidesFile.secure_url];
+          const slidesFile = await upload(image.tempFilePath);
+          slideFiles.push(slidesFile.secure_url);
         });
       } else {
         slideFile = await upload(slide.tempFilePath);
