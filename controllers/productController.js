@@ -20,10 +20,12 @@ class ProductController {
       let fileName = uuid.v4() + '.jpg';
       let slideName = uuid.v4() + '.jpg';
       const cloudFile = await upload(img.tempFilePath);
-      const slideFile = {};
+      let slideFile = {};
       const slideFiles = [];
       if (slide.length > 1) {
-        slide.forEach(async (image, i) => slideFiles.push(await upload(image.tempFilePath)));
+        slide.forEach(async (image, i) =>
+          slideFiles.push(...slideFiles, await upload(image.tempFilePath))
+        );
       } else {
         slideFile = await upload(slide.tempFilePath);
       }
