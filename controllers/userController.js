@@ -138,9 +138,17 @@ class UserController {
       sum,
       items,
       firstName,
+      upFirstName,
+      crFirstName,
       lastName,
+      upLastName,
+      crLastName,
       email,
+      upEmail,
+      crEmail,
       phone,
+      upPhone,
+      crPhone,
       password,
       company,
       firstAddress,
@@ -225,10 +233,10 @@ class UserController {
       secondAddress = secondAddress ? secondAddress : '';
       UserAddress.create({
         userId,
-        firstName,
-        lastName,
-        email,
-        phone,
+        firstName: crFirstName,
+        lastName: crLastName,
+        email: crEmail,
+        phone: crPhone,
         company: company,
         firstAddress,
         secondAddress: secondAddress,
@@ -252,17 +260,17 @@ class UserController {
       };
       let props = {};
 
-      if (firstName) {
-        props = { ...props, firstName };
+      if (upFirstName) {
+        props = { ...props, firstName: upFirstName };
       }
-      if (lastName) {
-        props = { ...props, lastName };
+      if (upLastName) {
+        props = { ...props, lastName: upLastName };
       }
-      if (email) {
-        props = { ...props, email };
+      if (upEmail) {
+        props = { ...props, email: upEmail };
       }
-      if (phone) {
-        props = { ...props, phone };
+      if (upPhone) {
+        props = { ...props, phone: upPhone };
       }
       if (company) {
         props = { ...props, company };
