@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 const { Product, ProductInfo, ProductSlide, ProductText } = require('../models/models');
 const ApiError = require('../error/ApiError');
-const { upload, destroy } = require('../cloudinary');
+const { upload } = require('../cloudinary');
 
 class ProductController {
   async create(req, res, next) {
@@ -84,7 +84,6 @@ class ProductController {
     const product = await Product.destroy({
       where: { id },
     });
-    await destroy(product.img.split('.')[0]);
     return res.json(product);
   }
 
