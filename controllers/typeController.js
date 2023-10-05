@@ -1,7 +1,5 @@
 const { Type } = require('../models/models');
 const ApiError = require('../error/ApiError');
-const uuid = require('uuid');
-const path = require('path');
 const { upload } = require('../cloudinary');
 
 class TypeController {
@@ -9,7 +7,8 @@ class TypeController {
     let { name, categoryId } = req.body;
     const { img } = req.files;
     const cloudFile = await upload(img.tempFilePath);
-    const type = await Type.create({ name, categoryId, img: cloudFile.secure_url });
+    const fileName = cloudFile.secure_url.split('/').pop();
+    const type = await Type.create({ name, categoryId, img: fileName });
     return res.json(type);
   }
 
@@ -26,8 +25,9 @@ class TypeController {
     let { name, categoryId } = req.body;
     const { img } = req.files;
     const cloudFile = await upload(img.tempFilePath);
+    const fileName = cloudFile.secure_url.split('/').pop();
     const options = { where: { id: typeId } };
-    const type = await Type.update({ name, categoryId, img: cloudFile.secure_url }, options);
+    const type = await Type.update({ name, categoryId, img: fileName }, options);
     return res.json(type);
   }
 

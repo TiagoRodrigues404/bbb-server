@@ -1,5 +1,3 @@
-const uuid = require('uuid');
-const path = require('path');
 const { Brand } = require('../models/models');
 const ApiError = require('../error/ApiError');
 const { upload } = require('../cloudinary');
@@ -9,7 +7,8 @@ class BrandController {
     const { name } = req.body;
     const { img } = req.files;
     const cloudFile = await upload(img.tempFilePath);
-    const brand = await Brand.create({ name, img: cloudFile.secure_url });
+    const fileName = cloudFile.secure_url.split('/').pop();
+    const brand = await Brand.create({ name, img: fileName });
     return res.json(brand);
   }
 
@@ -25,10 +24,11 @@ class BrandController {
     const brandId = req.params.id;
     let { name } = req.body;
     const { img } = req.files;
-    let fileName = uuid.v4() + '.jpg';
+
     const cloudFile = await upload(img.tempFilePath);
+    const fileName = cloudFile.secure_url.split('/').pop();
     const options = { where: { id: brandId } };
-    const brand = await Brand.update({ name, img: cloudFile.secure_url }, options);
+    const brand = await Brand.update({ name, img: fileName }, options);
     return res.json(brand);
   }
 

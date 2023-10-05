@@ -1,7 +1,5 @@
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-const uuid = require('uuid');
-const path = require('path');
 const { Product, ProductInfo, ProductSlide, ProductText } = require('../models/models');
 const ApiError = require('../error/ApiError');
 const { upload } = require('../cloudinary');
@@ -18,17 +16,18 @@ class ProductController {
         return res.send('Image formats supported: JPG, PNG, JPEG');
       }
       const cloudFile = await upload(img.tempFilePath);
-      let slideFile = {};
+      const fileName = cloudFile.secure_url.split('/').pop();
+      let slideName = '';
       let slideNames = [];
       if (slide.length > 1) {
         for (let image of slide) {
           const resFile = await upload(image.tempFilePath);
-          const slideUrl = resFile.secure_url;
-          const slideName = slideUrl.split('/').pop();
+          const slideName = resFile.secure_url.split('/').pop();
           slideNames = [...slideNames, slideName];
         }
       } else {
-        slideFile = await upload(slide.tempFilePath);
+        const slideFile = await upload(slide.tempFilePath);
+        slideName = slideFile.secure_url.split('/').pop();
       }
 
       const product = await Product.create({
@@ -37,7 +36,7 @@ class ProductController {
         price,
         brandId,
         typeId,
-        img: cloudFile.secure_url.split('/').pop(),
+        img: fileName,
         isLashes,
       });
 
@@ -68,7 +67,7 @@ class ProductController {
         });
       } else {
         ProductSlide.create({
-          slideImg: slideFile.secure_url.split('/').pop(),
+          slideImg: slideName,
           productId: product.id,
         });
       }
@@ -95,18 +94,25 @@ class ProductController {
     const { img } = req.files ? req.files : '';
     const { slide } = req.files ? req.files : '';
 
-    let fileName = uuid.v4() + '.jpg';
-    let slideName = uuid.v4() + '.jpg';
+    let fileName = '';
+    let slideNames = [];
+    let slideName = '';
 
     if (img) {
-      await upload(img.tempFilePath);
+      const cloudFile = await upload(img.tempFilePath);
+      fileName = cloudFile.secure_url.split('/').pop();
     }
 
     if (slide) {
       if (slide.length > 1) {
-        slide.forEach(async (image, i) => await upload(image.tempFilePath));
+        for (let image of slide) {
+          const resFile = await upload(image.tempFilePath);
+          const slideName = resFile.secure_url.split('/').pop();
+          slideNames = [...slideNames, slideName];
+        }
       } else {
         const slideFile = await upload(slide.tempFilePath);
+        slideName = slideFile.secure_url.split('/').pop();
       }
     }
 
@@ -175,9 +181,9 @@ class ProductController {
     if (slide) {
       const productId = req.params.id;
       if (slide.length > 1) {
-        slide.forEach((img, index) => {
+        slideNames.forEach(img => {
           ProductSlide.create({
-            slideImg: index + slideName,
+            slideImg: img,
             productId: productId,
           });
         });

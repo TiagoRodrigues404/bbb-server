@@ -1,5 +1,3 @@
-const uuid = require('uuid');
-const path = require('path');
 const { Slide } = require('../models/models');
 const ApiError = require('../error/ApiError');
 const { upload } = require('../cloudinary');
@@ -9,7 +7,8 @@ class SlideController {
     try {
       const { img } = req.files;
       const cloudFile = await upload(img.tempFilePath);
-      const slide = await Slide.create({ img: cloudFile.secure_url });
+      const fileName = cloudFile.secure_url.split('/').pop();
+      const slide = await Slide.create({ img: fileName });
       return res.json(slide);
     } catch (e) {
       next(ApiError.badRequest(e.message));
