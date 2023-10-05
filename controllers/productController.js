@@ -23,7 +23,8 @@ class ProductController {
       if (slide.length > 1) {
         for (let image of slide) {
           const resFile = await upload(image.tempFilePath);
-          const slideName = resFile.secure_url.split('/').at(-1);
+          const slideUrl = resFile.secure_url;
+          const slideName = slideUrl.split('/').pop();
           slideNames = [...slideNames, slideName];
         }
       } else {
@@ -36,7 +37,7 @@ class ProductController {
         price,
         brandId,
         typeId,
-        img: cloudFile.secure_url.split('/').at(-1),
+        img: cloudFile.secure_url.split('/').pop(),
         isLashes,
       });
 
@@ -67,7 +68,7 @@ class ProductController {
         });
       } else {
         ProductSlide.create({
-          slideImg: slideFile.secure_url.split('/').at(-1),
+          slideImg: slideFile.secure_url.split('/').pop(),
           productId: product.id,
         });
       }
