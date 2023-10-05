@@ -37,7 +37,7 @@ const UserAddress = sequelize.define('user_address', {
   city: { type: DataTypes.STRING, allowNull: false },
   country: { type: DataTypes.STRING, allowNull: false },
   region: { type: DataTypes.STRING, allowNull: false },
-  postalCode: { type: DataTypes.INTEGER, allowNull: false },
+  postalCode: { type: DataTypes.STRING, allowNull: false },
   mainAddress: { type: DataTypes.BOOLEAN, allowNull: false },
 });
 
