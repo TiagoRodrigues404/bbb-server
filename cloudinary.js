@@ -14,4 +14,8 @@ const upload = async file => {
   return image;
 };
 
-module.exports = { upload };
+const destroy = async fileName => {
+  await cloudinary.uploader.destroy(fileName, { folder: 'static' }, result => result);
+};
+
+module.exports = { upload, destroy };
