@@ -113,7 +113,7 @@ const Slide = sequelize.define('slide', {
   img: { type: DataTypes.STRING, allowNull: false },
 });
 
-const DeliveryPrice = sequelize.define('deliveryPrice', {
+const DeliveryPrice = sequelize.define('delivery', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   price: { type: DataTypes.NUMBER, allowNull: false },
   type: {type: DataTypes.STRING, allowNull: false},

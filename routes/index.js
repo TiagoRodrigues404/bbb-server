@@ -20,6 +20,6 @@ router.use('/category', categoryRouter);
 router.use('/slide', slideRouter);
 router.use('/rating', ratingRouter);
 router.use('/review', reviewRouter);
-router.use('/deliveryPrice', deliveryRouter);
+router.use('/delivery', deliveryRouter);
 
 module.exports = router;
