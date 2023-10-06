@@ -10,6 +10,7 @@ const categoryRouter = require('./categoryRouter');
 const slideRouter = require('./slideRouter');
 const ratingRouter = require('./ratingRouter');
 const reviewRouter = require('./reviewRouter');
+const deliveryRouter = require('./deliveryRouter');
 
 router.use('/user', userRouter);
 router.use('/type', typeRouter);
@@ -19,5 +20,6 @@ router.use('/category', categoryRouter);
 router.use('/slide', slideRouter);
 router.use('/rating', ratingRouter);
 router.use('/review', reviewRouter);
+router.use('/deliveryPrice', deliveryRouter);
 
 module.exports = router;

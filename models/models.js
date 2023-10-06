@@ -113,6 +113,12 @@ const Slide = sequelize.define('slide', {
   img: { type: DataTypes.STRING, allowNull: false },
 });
 
+const DeliveryPrice = sequelize.define('deliveryPrice', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  price: { type: DataTypes.NUMBER, allowNull: false },
+  type: {type: DataTypes.STRING, allowNull: false},
+});
+
 User.hasOne(Basket);
 Basket.belongsTo(User);
 
@@ -182,4 +188,5 @@ module.exports = {
   ProductSlide,
   Slide,
   ProductText,
+  DeliveryPrice,
 };

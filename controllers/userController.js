@@ -136,6 +136,7 @@ class UserController {
       userId,
       quantity,
       sum,
+      deliveryPrice,
       items,
       firstName,
       upFirstName,
@@ -193,9 +194,10 @@ class UserController {
 
     if (userId && items) {
       const userOrder = await UserOrder.create({
-        userId: userId,
-        quantity: quantity,
-        sum: sum,
+        userId,
+        quantity,
+        deliveryPrice,
+        sum,
       });
       items = JSON.parse(items);
       items.forEach(item => {
