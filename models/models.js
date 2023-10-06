@@ -116,7 +116,7 @@ const Slide = sequelize.define('slide', {
 const DeliveryPrice = sequelize.define('delivery', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   price: { type: DataTypes.STRING, allowNull: false },
-  requireSum: { type: DataTypes.STRING, allowNull: true },
+  requiredSum: { type: DataTypes.STRING, allowNull: true },
   type: { type: DataTypes.STRING, allowNull: false },
 });
 
