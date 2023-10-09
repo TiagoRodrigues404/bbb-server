@@ -23,6 +23,7 @@ const UserOrder = sequelize.define('user_order', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   quantity: { type: DataTypes.INTEGER, allowNull: false },
   sum: { type: DataTypes.INTEGER, allowNull: false },
+  deliveryPrice: { type: DataTypes.STRING, allowNull: false },
 });
 
 const UserAddress = sequelize.define('user_address', {
