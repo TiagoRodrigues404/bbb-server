@@ -1,13 +1,21 @@
 const Sequelize = require('sequelize');
 const Op = Sequelize.Op;
-const { Product, ProductInfo, ProductSlide, ProductText } = require('../models/models');
+const {
+  Product,
+  ProductInfo,
+  ProductSlide,
+  ProductText,
+  ProductApplying,
+  ProductCompound,
+} = require('../models/models');
 const ApiError = require('../error/ApiError');
 const { upload } = require('../cloudinary');
 
 class ProductController {
   async create(req, res, next) {
     try {
-      let { name, code, price, brandId, typeId, info, isLashes, text } = req.body;
+      let { name, code, price, brandId, typeId, info, isLashes, text, compound, applying } =
+        req.body;
       if (!req.files) return res.send('Please upload an image');
       const { img } = req.files;
       let { slide } = req.files;
@@ -43,6 +51,20 @@ class ProductController {
       if (text) {
         ProductText.create({
           text: text,
+          productId: product.id,
+        });
+      }
+
+      if (applying) {
+        ProductText.create({
+          text: applying,
+          productId: product.id,
+        });
+      }
+
+      if (compound) {
+        ProductText.create({
+          text: compound,
           productId: product.id,
         });
       }
@@ -89,8 +111,20 @@ class ProductController {
 
   async update(req, res, next) {
     const { id } = req.params;
-    let { name, rating, code, price, brandId, typeId, info, isLashes, text, deletedSlideId } =
-      req.body;
+    let {
+      name,
+      rating,
+      code,
+      price,
+      brandId,
+      typeId,
+      info,
+      isLashes,
+      text,
+      applying,
+      compound,
+      deletedSlideId,
+    } = req.body;
 
     const { img } = req.files ? req.files : '';
     const { slide } = req.files ? req.files : '';
@@ -157,6 +191,28 @@ class ProductController {
       );
     }
 
+    if (applying) {
+      const productId = req.params.id;
+      const textOps = { where: { productId: productId } };
+      ProductText.update(
+        {
+          text: applying,
+        },
+        textOps
+      );
+    }
+
+    if (compound) {
+      const productId = req.params.id;
+      const textOps = { where: { productId: productId } };
+      ProductText.update(
+        {
+          text: compound,
+        },
+        textOps
+      );
+    }
+
     if (info) {
       const productId = req.params.id;
       const infoOps = { where: { productId: productId } };
@@ -216,6 +272,8 @@ class ProductController {
         { model: ProductInfo, as: 'info' },
         { model: ProductSlide, as: 'slide' },
         { model: ProductText, as: 'text' },
+        { model: ProductApplying, as: 'applying' },
+        { model: ProductCompound, as: 'compound' },
       ],
     };
 
@@ -253,6 +311,8 @@ class ProductController {
           { model: ProductInfo, as: 'info' },
           { model: ProductSlide, as: 'slide' },
           { model: ProductText, as: 'text' },
+          { model: ProductApplying, as: 'applying' },
+          { model: ProductCompound, as: 'compound' },
         ],
       });
       return res.json(product);

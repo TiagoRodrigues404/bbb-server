@@ -104,6 +104,16 @@ const ProductText = sequelize.define('product_text', {
   text: { type: DataTypes.TEXT, allowNull: false },
 });
 
+const ProductApplying = sequelize.define('product_applying', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  text: { type: DataTypes.TEXT, allowNull: true },
+});
+
+const ProductCompound = sequelize.define('product_compound', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  text: { type: DataTypes.TEXT, allowNull: true },
+});
+
 const TypeBrand = sequelize.define('type_brand', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
 });
@@ -168,6 +178,12 @@ ProductSlide.belongsTo(Product);
 Product.hasMany(ProductText, { as: 'text' });
 ProductText.belongsTo(Product);
 
+Product.hasMany(ProductCompound, { as: 'compound' });
+ProductCompound.belongsTo(Product);
+
+Product.hasMany(ProductApplying, { as: 'applying' });
+ProductApplying.belongsTo(Product);
+
 Type.belongsToMany(Brand, { through: TypeBrand });
 Brand.belongsToMany(Type, { through: TypeBrand });
 
@@ -189,5 +205,7 @@ module.exports = {
   ProductSlide,
   Slide,
   ProductText,
+  ProductCompound,
+  ProductApplying,
   DeliveryPrice,
 };
