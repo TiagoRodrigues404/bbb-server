@@ -56,14 +56,14 @@ class ProductController {
       }
 
       if (applying) {
-        ProductText.create({
+        ProductApplying.create({
           text: applying,
           productId: product.id,
         });
       }
 
       if (compound) {
-        ProductText.create({
+        ProductCompound.create({
           text: compound,
           productId: product.id,
         });
@@ -194,7 +194,7 @@ class ProductController {
     if (applying) {
       const productId = req.params.id;
       const textOps = { where: { productId: productId } };
-      ProductText.update(
+      ProductApplying.update(
         {
           text: applying,
         },
@@ -205,7 +205,7 @@ class ProductController {
     if (compound) {
       const productId = req.params.id;
       const textOps = { where: { productId: productId } };
-      ProductText.update(
+      ProductCompound.update(
         {
           text: compound,
         },
