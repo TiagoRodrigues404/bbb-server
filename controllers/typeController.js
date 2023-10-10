@@ -24,10 +24,24 @@ class TypeController {
     const typeId = req.params.id;
     let { name, categoryId } = req.body;
     const { img } = req.files;
-    const cloudFile = await upload(img.tempFilePath);
-    const fileName = cloudFile.secure_url.split('/').pop();
+    let props = {};
     const options = { where: { id: typeId } };
-    const type = await Type.update({ name, categoryId, img: fileName }, options);
+
+    if (name) {
+      props = { ...props, name };
+    }
+
+    if (categoryId) {
+      props = { ...props, categoryId };
+    }
+
+    if (img) {
+      const cloudFile = await upload(img.tempFilePath);
+      const fileName = cloudFile.secure_url.split('/').pop();
+      props = { ...props, img: fileName };
+    }
+
+    const type = await Type.update(props, options);
     return res.json(type);
   }
 

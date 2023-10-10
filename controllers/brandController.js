@@ -25,10 +25,17 @@ class BrandController {
     let { name } = req.body;
     const { img } = req.files;
 
-    const cloudFile = await upload(img.tempFilePath);
-    const fileName = cloudFile.secure_url.split('/').pop();
     const options = { where: { id: brandId } };
-    const brand = await Brand.update({ name, img: fileName }, options);
+    let props = {};
+    if (img) {
+      const cloudFile = await upload(img.tempFilePath);
+      const fileName = cloudFile.secure_url.split('/').pop();
+      props = { ...props, img: fileName };
+    }
+    if (name) {
+      props = { ...props, name };
+    }
+    const brand = await Brand.update(props, options);
     return res.json(brand);
   }
 
