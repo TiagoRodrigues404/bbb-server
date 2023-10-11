@@ -21,19 +21,20 @@ class BrandController {
   }
 
   async update(req, res) {
-    const brandId = req.params.id;
+    const { id } = req.params;
     let { name } = req.body;
     const { img } = req.files;
 
-    const options = { where: { id: brandId } };
+    const options = { where: { id: id } };
     let props = {};
+
+    if (name) {
+      props = { ...props, name };
+    }
     if (img) {
       const cloudFile = await upload(img.tempFilePath);
       const fileName = cloudFile.secure_url.split('/').pop();
       props = { ...props, img: fileName };
-    }
-    if (name) {
-      props = { ...props, name };
     }
     const brand = await Brand.update(props, options);
     return res.json(brand);
