@@ -48,26 +48,20 @@ class ProductController {
         isLashes,
       });
 
-      if (text) {
-        ProductText.create({
-          text: text,
-          productId: product.id,
-        });
-      }
+      ProductText.create({
+        text: text,
+        productId: product.id,
+      });
 
-      if (applying) {
-        ProductApplying.create({
-          text: applying,
-          productId: product.id,
-        });
-      }
+      ProductApplying.create({
+        text: applying,
+        productId: product.id,
+      });
 
-      if (compound) {
-        ProductCompound.create({
-          text: compound,
-          productId: product.id,
-        });
-      }
+      ProductCompound.create({
+        text: compound,
+        productId: product.id,
+      });
 
       if (info) {
         info = JSON.parse(info);
