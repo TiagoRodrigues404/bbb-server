@@ -25,11 +25,12 @@ class TypeController {
   }
 
   async update(req, res) {
-    const typeId = req.params.id;
+    const { id } = req.params;
     let { name, categoryId } = req.body;
-    const { img } = req.files;
+    const { img } = req.files ? req.files : '';
+
     let props = {};
-    const options = { where: { id: typeId } };
+    const options = { where: { id: id } };
 
     if (name) {
       props = { ...props, name };
