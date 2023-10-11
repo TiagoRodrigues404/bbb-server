@@ -3,13 +3,17 @@ const ApiError = require('../error/ApiError');
 const { upload } = require('../cloudinary');
 
 class BrandController {
-  async create(req, res) {
-    const { name } = req.body;
-    const { img } = req.files;
-    const cloudFile = await upload(img.tempFilePath);
-    const fileName = cloudFile.secure_url.split('/').pop();
-    const brand = await Brand.create({ name, img: fileName });
-    return res.json(brand);
+  async create(req, res, next) {
+    try {
+      const { name } = req.body;
+      const { img } = req.files;
+      const cloudFile = await upload(img.tempFilePath);
+      const fileName = cloudFile.secure_url.split('/').pop();
+      const brand = await Brand.create({ name, img: fileName });
+      return res.json(brand);
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
+    }
   }
 
   async destroy(req, res) {
@@ -23,7 +27,8 @@ class BrandController {
   async update(req, res) {
     const { id } = req.params;
     let { name } = req.body;
-    const { img } = req.files;
+
+    const { img } = req.files ? req.files : '';
 
     const options = { where: { id: id } };
     let props = {};

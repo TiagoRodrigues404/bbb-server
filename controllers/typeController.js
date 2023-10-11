@@ -4,12 +4,16 @@ const { upload } = require('../cloudinary');
 
 class TypeController {
   async create(req, res) {
-    let { name, categoryId } = req.body;
-    const { img } = req.files;
-    const cloudFile = await upload(img.tempFilePath);
-    const fileName = cloudFile.secure_url.split('/').pop();
-    const type = await Type.create({ name, categoryId, img: fileName });
-    return res.json(type);
+    try {
+      let { name, categoryId } = req.body;
+      const { img } = req.files;
+      const cloudFile = await upload(img.tempFilePath);
+      const fileName = cloudFile.secure_url.split('/').pop();
+      const type = await Type.create({ name, categoryId, img: fileName });
+      return res.json(type);
+    } catch (e) {
+      next(ApiError.badRequest(e.message));
+    }
   }
 
   async destroy(req, res) {
