@@ -186,7 +186,7 @@ class ProductController {
       props = { ...props, rating };
     }
 
-    props = { ...props, isLashes };
+    props = { ...props, isLashes: isLashes };
 
     const product = await Product.update(props, options);
 
