@@ -155,6 +155,9 @@ BasketProduct.belongsTo(Basket);
 Category.hasMany(Type);
 Type.belongsTo(Category);
 
+Category.hasMany(Product);
+Product.belongsTo(Category);
+
 Type.hasMany(Product);
 Product.belongsTo(Type);
 

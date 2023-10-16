@@ -250,7 +250,7 @@ class ProductController {
   }
 
   async getAll(req, res) {
-    const { brandId, typeId, limit = 12, page = 1, rating, name, price } = req.query;
+    const { categoryId, brandId, typeId, limit = 12, page = 1, rating, name, price } = req.query;
     const offset = page * limit - limit;
 
     let sort = req.query.sort ? req.query.sort : 'rating';
@@ -270,6 +270,10 @@ class ProductController {
         { model: ProductCompound, as: 'compound' },
       ],
     };
+
+    if (categoryId) {
+      options.where = { ...options.where, categoryId };
+    }
 
     if (brandId) {
       options.where = { ...options.where, brandId };
