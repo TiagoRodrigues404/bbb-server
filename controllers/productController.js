@@ -14,8 +14,19 @@ const { upload } = require('../cloudinary');
 class ProductController {
   async create(req, res, next) {
     try {
-      let { name, code, price, brandId, typeId, info, isLashes, text, compound, applying } =
-        req.body;
+      let {
+        name,
+        code,
+        price,
+        categoryId,
+        brandId,
+        typeId,
+        info,
+        isLashes,
+        text,
+        compound,
+        applying,
+      } = req.body;
       if (!req.files) return res.send('Please upload an image');
       const { img } = req.files;
       let { slide } = req.files;
@@ -42,6 +53,7 @@ class ProductController {
         name,
         code,
         price,
+        categoryId,
         brandId,
         typeId,
         img: fileName,
@@ -110,6 +122,7 @@ class ProductController {
       rating,
       code,
       price,
+      categoryId,
       brandId,
       typeId,
       info,
@@ -159,6 +172,9 @@ class ProductController {
     }
     if (price) {
       props = { ...props, price };
+    }
+    if (categoryId) {
+      props = { ...props, categoryId };
     }
     if (brandId) {
       props = { ...props, brandId };
