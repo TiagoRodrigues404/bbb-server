@@ -42,7 +42,7 @@ class DeliveryController {
       if (type) {
         props = { ...props, type };
       }
-      const delivery = await DeliveryPrice.update(...props, options);
+      const delivery = await DeliveryPrice.update(props, options);
       return res.json(delivery);
     } catch (e) {
       next(ApiError.badRequest(e.message));
