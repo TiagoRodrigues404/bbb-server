@@ -12,6 +12,14 @@ class DeliveryController {
     }
   }
 
+  async getOne(req, res) {
+    const { id } = req.params;
+    const delivery = await DeliveryPrice.findOne({
+      where: { id },
+    });
+    return res.json(delivery);
+  }
+
   async getAll(req, res) {
     const deliveries = await DeliveryPrice.findAll({
       order: [['id', 'ASC']],
