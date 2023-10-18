@@ -29,7 +29,7 @@ class ProductController {
       } = req.body;
       if (!req.files) return res.send('Please upload an image');
       const { img } = req.files;
-      let { slide } = req.files;
+      let { slide } = req.files ? req.files : '';
       const fileTypes = ['image/jpeg', 'image/png', 'image/jpg'];
       if (!fileTypes.includes(img.mimetype)) {
         return res.send('Image formats supported: JPG, PNG, JPEG');
@@ -38,15 +38,18 @@ class ProductController {
       const fileName = cloudFile.secure_url.split('/').pop();
       let slideName = '';
       let slideNames = [];
-      if (slide.length > 1) {
-        for (let image of slide) {
-          const resFile = await upload(image.tempFilePath);
-          const slideName = resFile.secure_url.split('/').pop();
-          slideNames = [...slideNames, slideName];
+
+      if (slide) {
+        if (slide.length > 1) {
+          for (let image of slide) {
+            const resFile = await upload(image.tempFilePath);
+            const slideName = resFile.secure_url.split('/').pop();
+            slideNames = [...slideNames, slideName];
+          }
+        } else {
+          const slideFile = await upload(slide.tempFilePath);
+          slideName = slideFile.secure_url.split('/').pop();
         }
-      } else {
-        const slideFile = await upload(slide.tempFilePath);
-        slideName = slideFile.secure_url.split('/').pop();
       }
 
       const product = await Product.create({
@@ -86,18 +89,20 @@ class ProductController {
         );
       }
 
-      if (slide.length > 1) {
-        slideNames.forEach(img => {
+      if (slide) {
+        if (slide.length > 1) {
+          slideNames.forEach(img => {
+            ProductSlide.create({
+              slideImg: img,
+              productId: product.id,
+            });
+          });
+        } else {
           ProductSlide.create({
-            slideImg: img,
+            slideImg: slideName,
             productId: product.id,
           });
-        });
-      } else {
-        ProductSlide.create({
-          slideImg: slideName,
-          productId: product.id,
-        });
+        }
       }
 
       return res.json(product);
