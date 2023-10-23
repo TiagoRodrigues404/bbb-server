@@ -122,6 +122,7 @@ const TypeBrand = sequelize.define('type_brand', {
 const Slide = sequelize.define('slide', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   img: { type: DataTypes.STRING, allowNull: false },
+  url: { type: DataTypes.STRING, allowNull: true },
 });
 
 const DeliveryPrice = sequelize.define('delivery', {

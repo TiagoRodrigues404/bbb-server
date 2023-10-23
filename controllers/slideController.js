@@ -6,13 +6,35 @@ class SlideController {
   async create(req, res, next) {
     try {
       const { img } = req.files;
+      const { url } = req.body;
       const cloudFile = await upload(img.tempFilePath);
       const fileName = cloudFile.secure_url.split('/').pop();
-      const slide = await Slide.create({ img: fileName });
+      const slide = await Slide.create({ img: fileName, url });
       return res.json(slide);
     } catch (e) {
       next(ApiError.badRequest(e.message));
     }
+  }
+
+  async update(req, res) {
+    const { id } = req.params;
+    let { url } = req.body;
+
+    const { img } = req.files ? req.files : '';
+
+    const options = { where: { id: id } };
+    let props = {};
+
+    if (url) {
+      props = { ...props, url };
+    }
+    if (img) {
+      const cloudFile = await upload(img.tempFilePath);
+      const fileName = cloudFile.secure_url.split('/').pop();
+      props = { ...props, img: fileName };
+    }
+    const slide = await Slide.update(props, options);
+    return res.json(slide);
   }
 
   async destroy(req, res) {

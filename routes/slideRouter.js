@@ -7,5 +7,6 @@ router.post('/', checkRole('ADMIN'), slideController.create);
 router.get('/', slideController.getAll);
 router.get('/:id', slideController.getOne);
 router.delete('/', slideController.destroy);
+router.patch('/:id', slideController.update);
 
 module.exports = router;
