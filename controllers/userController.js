@@ -71,10 +71,6 @@ class UserController {
           as: 'order',
           include: [{ model: OrderItem, as: 'item' }],
         },
-        {
-          model: UserAddress,
-          as: 'address',
-        },
       ],
     };
     if (role) {
