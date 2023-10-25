@@ -11,6 +11,7 @@ const slideRouter = require('./slideRouter');
 const ratingRouter = require('./ratingRouter');
 const reviewRouter = require('./reviewRouter');
 const deliveryRouter = require('./deliveryRouter');
+const paymentRouter = require('./paymentRouter');
 
 router.use('/user', userRouter);
 router.use('/type', typeRouter);
@@ -21,5 +22,6 @@ router.use('/slide', slideRouter);
 router.use('/rating', ratingRouter);
 router.use('/review', reviewRouter);
 router.use('/delivery', deliveryRouter);
+router.use('/payment', paymentRouter);
 
 module.exports = router;

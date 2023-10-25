@@ -132,6 +132,12 @@ const DeliveryPrice = sequelize.define('delivery', {
   type: { type: DataTypes.STRING, allowNull: false },
 });
 
+const PaymentDetails = sequelize.define('payment', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  iban: { type: DataTypes.STRING, allowNull: false },
+  recipient: { type: DataTypes.STRING, allowNull: false },
+});
+
 User.hasOne(Basket);
 Basket.belongsTo(User);
 
@@ -213,4 +219,5 @@ module.exports = {
   ProductCompound,
   ProductApplying,
   DeliveryPrice,
+  PaymentDetails,
 };
