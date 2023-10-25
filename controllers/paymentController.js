@@ -12,6 +12,13 @@ class PaymentController {
     }
   }
 
+  async getAll(req, res) {
+    const payments = await PaymentDetails.findAll({
+      order: [['id', 'ASC']],
+    });
+    return res.json(payments);
+  }
+
   async getOne(req, res) {
     const { id } = req.params;
     const delivery = await DeliveryPrice.findOne({
