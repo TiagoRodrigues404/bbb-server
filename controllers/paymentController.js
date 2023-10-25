@@ -21,10 +21,10 @@ class PaymentController {
 
   async getOne(req, res) {
     const { id } = req.params;
-    const delivery = await DeliveryPrice.findOne({
+    const payment = await PaymentDetails.findOne({
       where: { id },
     });
-    return res.json(delivery);
+    return res.json(payment);
   }
 
   async update(req, res, next) {
