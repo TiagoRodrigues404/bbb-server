@@ -133,6 +133,7 @@ class UserController {
       quantity,
       sum,
       deliveryPrice,
+      orderNumber,
       items,
       firstName,
       upFirstName,
@@ -194,6 +195,7 @@ class UserController {
         quantity,
         deliveryPrice,
         sum,
+        orderNumber,
       });
       items = JSON.parse(items);
       items.forEach(item => {
