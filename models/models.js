@@ -126,6 +126,12 @@ const Slide = sequelize.define('slide', {
   url: { type: DataTypes.STRING, allowNull: true },
 });
 
+const Logo = sequelize.define('logo', {
+  id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+  img: { type: DataTypes.STRING, allowNull: false },
+  logoName: { type: DataTypes.STRING, allowNull: true },
+});
+
 const DeliveryPrice = sequelize.define('delivery', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   price: { type: DataTypes.STRING, allowNull: false },
@@ -216,6 +222,7 @@ module.exports = {
   ProductInfo,
   ProductSlide,
   Slide,
+  Logo,
   ProductText,
   ProductCompound,
   ProductApplying,

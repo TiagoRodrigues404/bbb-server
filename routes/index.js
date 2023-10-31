@@ -8,6 +8,7 @@ const brandRouter = require('./brandRouter');
 const typeRouter = require('./typeRouter');
 const categoryRouter = require('./categoryRouter');
 const slideRouter = require('./slideRouter');
+const logoRouter = require('./logoRouter');
 const ratingRouter = require('./ratingRouter');
 const reviewRouter = require('./reviewRouter');
 const deliveryRouter = require('./deliveryRouter');
@@ -23,5 +24,6 @@ router.use('/rating', ratingRouter);
 router.use('/review', reviewRouter);
 router.use('/delivery', deliveryRouter);
 router.use('/payment', paymentRouter);
+router.use('/logo', logoRouter);
 
 module.exports = router;
