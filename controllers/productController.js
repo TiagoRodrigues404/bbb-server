@@ -23,6 +23,7 @@ class ProductController {
         typeId,
         info,
         isLashes,
+        available,
         text,
         compound,
         applying,
@@ -61,6 +62,7 @@ class ProductController {
         typeId,
         img: fileName,
         isLashes,
+        available,
       });
 
       ProductText.create({
@@ -136,6 +138,7 @@ class ProductController {
       applying,
       compound,
       deletedSlideId,
+      available,
     } = req.body;
 
     const { img } = req.files ? req.files : '';
@@ -191,7 +194,7 @@ class ProductController {
       props = { ...props, rating };
     }
 
-    props = { ...props, isLashes: isLashes };
+    props = { ...props, isLashes, available };
 
     const product = await Product.update(props, options);
 
