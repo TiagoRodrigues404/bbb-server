@@ -207,6 +207,11 @@ class ProductController {
         },
         textOps
       );
+    } else {
+      ProductText.create({
+        text: text,
+        productId: product.id,
+      });
     }
 
     if (applying) {
