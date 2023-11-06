@@ -9,7 +9,6 @@ router.post('/login', userController.login);
 router.get('/auth', authMiddleware, userController.refreshToken);
 router.get('/:id', userController.getById);
 router.get('/', userController.getOne);
-router.get('/', userController.getAll);
 router.patch('/:id', authMiddleware, userController.update);
 router.delete('/', userController.destroy);
 
