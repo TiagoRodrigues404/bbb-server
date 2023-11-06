@@ -199,22 +199,14 @@ class ProductController {
     const product = await Product.update(props, options);
 
     if (text) {
-      try {
-        const productId = req.params.id;
-        const textOps = { where: { productId: productId } };
-        ProductText.update(
-          {
-            text: text,
-          },
-          textOps
-        );
-      } catch (err) {
-        const productId = req.params.id;
-        ProductText.create({
+      const productId = req.params.id;
+      const textOps = { where: { productId: productId } };
+      ProductText.update(
+        {
           text: text,
-          productId: productId,
-        });
-      }
+        },
+        textOps
+      );
     }
 
     if (applying) {
