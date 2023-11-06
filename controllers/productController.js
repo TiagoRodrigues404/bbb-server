@@ -207,7 +207,7 @@ class ProductController {
         },
         textOps
       );
-    } else if (!text) {
+    } else {
       const productId = req.params.id;
       ProductText.create({
         text: text,
