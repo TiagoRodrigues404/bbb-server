@@ -207,10 +207,11 @@ class ProductController {
         },
         textOps
       );
-    } else {
+    } else if (!text) {
+      const productId = req.params.id;
       ProductText.create({
         text: text,
-        productId: product.id,
+        productId: productId,
       });
     }
 
