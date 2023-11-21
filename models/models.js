@@ -227,6 +227,6 @@ module.exports = {
   ProductText,
   ProductCompound,
   ProductApplying,
-  DeliveryPrice,
   PaymentDetails,
+  DeliveryPrice,
 };
