@@ -4,8 +4,8 @@ const ApiError = require('../error/ApiError');
 class PaymentController {
   async create(req, res, next) {
     try {
-      const { iban, recipient } = req.body;
-      const payment = await PaymentDetails.create({ iban, recipient });
+      const { account, recipient } = req.body;
+      const payment = await PaymentDetails.create({ account, recipient });
       return res.json(payment);
     } catch (e) {
       next(ApiError.badRequest(e.message));
@@ -30,11 +30,11 @@ class PaymentController {
   async update(req, res, next) {
     try {
       const { id } = req.params;
-      const { iban, recipient } = req.body;
+      const { account, recipient } = req.body;
       const options = { where: { id: id } };
       let props = {};
-      if (iban) {
-        props = { ...props, iban };
+      if (account) {
+        props = { ...props, account };
       }
       if (recipient) {
         props = { ...props, recipient };

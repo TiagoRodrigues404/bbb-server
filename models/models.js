@@ -142,7 +142,7 @@ const DeliveryPrice = sequelize.define('delivery', {
 
 const PaymentDetails = sequelize.define('payment', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-  iban: { type: DataTypes.STRING, allowNull: false },
+  account: { type: DataTypes.STRING, allowNull: false },
   recipient: { type: DataTypes.STRING, allowNull: false },
 });
 

@@ -61,6 +61,25 @@ class UserController {
     return res.json({ token });
   }
 
+  async getAll(req, res) {
+    const { role } = req.query;
+    let options = {
+      where: {},
+      include: [
+        {
+          model: UserOrder,
+          as: 'order',
+          include: [{ model: OrderItem, as: 'item' }],
+        },
+      ],
+    };
+    if (role) {
+      options.where = { ...options.where, role };
+    }
+    const users = await User.findAll(options);
+    return res.json(users);
+  }
+
   async getById(req, res) {
     const { id } = req.params;
     let options = {
