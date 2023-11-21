@@ -30,7 +30,7 @@ class PaymentController {
   async update(req, res, next) {
     try {
       const { id } = req.params;
-      const { account, recipient } = req.body;
+      const { account, recipient, available } = req.body;
       const options = { where: { id: id } };
       let props = {};
       if (account) {
@@ -39,6 +39,7 @@ class PaymentController {
       if (recipient) {
         props = { ...props, recipient };
       }
+      props = { ...props, available };
       const payment = await PaymentDetails.update(props, options);
       return res.json(payment);
     } catch (e) {

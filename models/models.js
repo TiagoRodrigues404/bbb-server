@@ -145,6 +145,7 @@ const PaymentDetails = sequelize.define('payment', {
   account: { type: DataTypes.STRING, allowNull: false },
   recipient: { type: DataTypes.STRING, allowNull: false },
   available: { type: DataTypes.BOOLEAN, allowNull: false },
+  type: { type: DataTypes.STRING, allowNull: false },
 });
 
 User.hasOne(Basket);
