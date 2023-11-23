@@ -1,40 +1,34 @@
-<?php
 
+<?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
 
 $mail = new PHPMailer(true);
-$mail->CharSet = 'UTF-8';
-$mail->IsHtml(true);
 
-$mail->setFrom('maledi2010@i.ua', 'Best Buy Beauty');
-$mail->addAddress('melioraspero24@gmail.com');
-$mail->Subject = 'New order';
+$mail->isSMTP();
+$mail->Host = 'smtp.gmail.com';
+$mail->SMTPAuth = true;
+$mail->Username = 'melioraspero24@gmail.com';
+$mail->Password = 'Credendovides92!';
+$mail->SMTPSecure = 'tls';
+$mail->Port = 587;
+$mail->setFrom('melioraspero24@gmail.com', 'Best Buy Beauty');
+$mail->addReplyTo('melioraspero24@gmail.com', 'Best Buy Beauty');
+$mail->addAddress("olena.liekan@gmail.com","")
+$mail->isHTML(true);
+$mail->Subject = "PHPMailer SMTP test";
 
-$body = '<h1>You are lucky!</h1>';
+$mail->Body = 'This is the plain text version of the email content';
+$mail->AltBody = "Альтернативное содержание сообщения";
 
-if(trim(!empty($_POST['Nome']))) {
-    $body.='<p><strong>Primeiro Nome:</strong> '.$_POST['Nome'].'</p>';
-}
-
-if(trim(!empty($_POST['Sobrenome']))) {
-    $body.='<p><strong>Último Nome:</strong> '.$_POST['Sobrenome'].'</p>';
-}
-
-$mail->Body = $body;
-
-if(!$mail->send()) {
-    $message = "Erro!";
+if(!$mail->send()){
+    echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
 } else {
-    $message = "Sucesso!";
+    echo 'Message has been sent';
 }
-
-$response = ['message' => $message];
-
-header('Content-type: application/json');
-echo json_encode($response);
-
 ?>

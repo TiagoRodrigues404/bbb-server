@@ -189,6 +189,13 @@ class UserController {
 
     const user = await User.update(props, options);
 
+    if (orderNumber) {
+      await fetch('sendmail.php', {
+        method: 'POST',
+        body: req.body,
+      });
+    }
+
     if (userId && items) {
       const userOrder = await UserOrder.create({
         userId,
