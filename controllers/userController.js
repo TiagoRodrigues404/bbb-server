@@ -190,7 +190,7 @@ class UserController {
     const user = await User.update(props, options);
 
     if (orderNumber) {
-      let response = await fetch('sendmail.php', {
+      let response = await fetch('../sendmail.php', {
         method: 'POST',
         body: req.body,
       });
