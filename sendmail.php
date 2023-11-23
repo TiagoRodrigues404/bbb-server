@@ -10,7 +10,7 @@ $mail = new PHPMailer(true);
 $mail->CharSet = 'UTF-8';
 $mail->IsHtml(true);
 
-$mail->setFrom('bestbuybeauty.pt@gmail.com', 'Best Buy Beauty');
+$mail->setFrom('maledi2010@i.ua', 'Best Buy Beauty');
 $mail->addAddress('melioraspero24@gmail.com');
 $mail->Subject = 'New order';
 
