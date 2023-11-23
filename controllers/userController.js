@@ -190,10 +190,16 @@ class UserController {
     const user = await User.update(props, options);
 
     if (orderNumber) {
-      await fetch('sendmail.php', {
+      let response = await fetch('sendmail.php', {
         method: 'POST',
         body: req.body,
       });
+      if (response.ok) {
+        let result = await response.json();
+        console.log(result.message);
+      } else {
+        console.log('error');
+      }
     }
 
     if (userId && items) {
