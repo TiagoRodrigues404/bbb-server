@@ -10,6 +10,7 @@ require 'PHPMailer/src/SMTP.php';
 $mail = new PHPMailer(true);
 $mail->CharSet = 'UTF-8';
 
+try {
 $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 $mail->isSMTP();
 $mail->Host = 'smtp.gmail.com';
@@ -27,10 +28,9 @@ $mail->Subject = "PHPMailer SMTP test";
 $mail->Body = 'This is the plain text version of the email content';
 $mail->AltBody = "Альтернативное содержание сообщения";
 
-if(!$mail->send()){
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
-} else {
-    echo 'Message has been sent';
+$mail->send();
+  echo "Сообщение отправлено";
+} catch (Exception $e) {
+  echo "Ошибка отправки: {$mail->ErrorInfo}";
 }
 ?>
