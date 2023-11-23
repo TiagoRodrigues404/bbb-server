@@ -22,7 +22,7 @@ $mail->SMTPSecure = 'tls';
 $mail->Port = 587;
 $mail->setFrom('melioraspero24@gmail.com', 'Best Buy Beauty');
 $mail->addReplyTo('melioraspero24@gmail.com', 'Best Buy Beauty');
-$mail->addAddress("olena.liekan@gmail.com","");
+$mail->addAddress('maledi2010@i.ua');
 $mail->isHTML(true);
 $mail->Subject = "PHPMailer SMTP test";
 
