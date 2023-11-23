@@ -1,7 +1,6 @@
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const sendmail = require('../sendmail');
 const { User, Basket, UserOrder, OrderItem, UserAddress } = require('../models/models');
 
 const generateJwt = (id, email, role) => {
@@ -191,7 +190,7 @@ class UserController {
     const user = await User.update(props, options);
 
     if (orderNumber) {
-      let response = await fetch(sendmail, {
+      let response = await fetch('./sendmail.php', {
         method: 'POST',
         body: req.body,
       });
