@@ -1,7 +1,7 @@
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const sendmail = require('../sendmail.php');
+const sendmail = require('../sendmail');
 const { User, Basket, UserOrder, OrderItem, UserAddress } = require('../models/models');
 
 const generateJwt = (id, email, role) => {
