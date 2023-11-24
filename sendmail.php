@@ -1,5 +1,6 @@
 
 <?php
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
@@ -17,11 +18,11 @@ $mail->isSMTP();
 $mail->Host = 'smtp.gmail.com';
 $mail->SMTPAuth = true;
 $mail->Username = 'melioraspero24@gmail.com';
-$mail->Password = 'Credendovides92!';
+$mail->Password = 'credendovides92!';
 $mail->SMTPSecure = 'tls';
 $mail->Port = 587;
-$mail->setFrom('melioraspero24@gmail.com', 'Best Buy Beauty');
-$mail->addReplyTo('melioraspero24@gmail.com', 'Best Buy Beauty');
+$mail->setFrom('melioraspero24@gmail.com', 'Olena Liekan');
+$mail->addReplyTo('melioraspero24@gmail.com', 'Olena Liekan');
 $mail->addAddress('maledi2010@i.ua');
 $mail->isHTML(true);
 $mail->Subject = "PHPMailer SMTP test";
@@ -34,4 +35,5 @@ $mail->send();
 } catch (Exception $e) {
   echo "Ошибка отправки: {$mail->ErrorInfo}";
 }
+
 ?>
