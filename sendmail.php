@@ -18,12 +18,12 @@ $mail->isSMTP();
 $mail->Host = 'smtp.gmail.com';
 $mail->SMTPAuth = true;
 $mail->Username = 'melioraspero24@gmail.com';
-$mail->Password = 'credendovides92!';
-$mail->SMTPSecure = 'tls';
-$mail->Port = 587;
+$mail->Password = 'dsoc xlxf bqfz orvw';
+$mail->SMTPSecure = 'ssl';
+$mail->Port = 465;
 $mail->setFrom('melioraspero24@gmail.com', 'Olena Liekan');
 $mail->addReplyTo('melioraspero24@gmail.com', 'Olena Liekan');
-$mail->addAddress('maledi2010@i.ua');
+$mail->addAddress('olena.liekan@gmail.com');
 $mail->isHTML(true);
 $mail->Subject = "PHPMailer SMTP test";
 
