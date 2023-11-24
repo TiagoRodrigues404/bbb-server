@@ -1,6 +1,8 @@
 
 <?php
 
+header("Access-Controll-Allow-Origin: *");
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
@@ -35,4 +37,5 @@ $mail->send();
 } catch (Exception $e) {
   echo "Ошибка отправки: {$mail->ErrorInfo}";
 }
+?>
 
