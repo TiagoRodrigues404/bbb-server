@@ -20,7 +20,7 @@ $mail->isSMTP();
 $mail->Host = 'smtp.gmail.com';
 $mail->SMTPAuth = true;
 $mail->Username = 'melioraspero24@gmail.com';
-$mail->Password = 'dsoc xlxf bqfz orvw';
+$mail->Password = 'dsocxlxfbqfzorvw';
 $mail->SMTPSecure = 'ssl';
 $mail->Port = 465;
 $mail->setFrom('melioraspero24@gmail.com', 'Olena Liekan');

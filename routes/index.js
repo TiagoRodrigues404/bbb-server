@@ -26,6 +26,6 @@ router.use('/review', reviewRouter);
 router.use('/delivery', deliveryRouter);
 router.use('/payment', paymentRouter);
 router.use('/logo', logoRouter);
-router.use('/sendmail', sendmailRouter);
+router.use('/index.php', sendmailRouter);
 
 module.exports = router;
