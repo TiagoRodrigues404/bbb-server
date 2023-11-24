@@ -1,4 +1,3 @@
-const { default: fetch } = require('node-fetch');
 const ApiError = require('../error/ApiError');
 
 class SendmailController {
