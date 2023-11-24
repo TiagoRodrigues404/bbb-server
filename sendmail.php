@@ -36,4 +36,3 @@ $mail->send();
   echo "Ошибка отправки: {$mail->ErrorInfo}";
 }
 
-?>
