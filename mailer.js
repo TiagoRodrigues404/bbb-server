@@ -9,9 +9,4 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-await transporter.sendMail({
-  from: 'melioraspero24@gmail.com',
-  to: 'olena.liekan@gmail.com',
-  subject: 'hello world',
-  html: '<h1>hello world</h1>',
-});
+module.exports = { transporter };
