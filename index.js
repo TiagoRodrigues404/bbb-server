@@ -10,7 +10,6 @@ const errorHandler = require('./middleware/ErrorHandlingMiddleware');
 const path = require('path');
 const colors = require('colors');
 const { setSecurityHeaders } = require('./security');
-const { transporter } = require('./mailer');
 
 const PORT = process.env.PORT || 3001;
 
@@ -36,12 +35,6 @@ const start = async () => {
       res.json({
         message: 'Hello from backend bbb-server express.js!',
       });
-    });
-    await transporter.sendMail({
-      from: 'melioraspero24@gmail.com',
-      to: 'olena.liekan@gmail.com',
-      subject: 'hello world',
-      html: '<h1>hello world</h1>',
     });
   } catch (e) {
     console.log(e);
