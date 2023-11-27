@@ -18,6 +18,7 @@ app.use(express.json());
 //app.use(express.static(path.resolve(__dirname, 'static')));
 app.use(fileUpload({ useTempFiles: true }));
 //pass the data from form
+app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 
 app.use(setSecurityHeaders);
@@ -35,7 +36,7 @@ const start = async () => {
     });
     app.get('/', (req, res) => {
       //render email form
-      res.render("email-form");
+      res.render('email-form');
       res.json({
         message: 'Hello from backend bbb-server express.js!',
       });
