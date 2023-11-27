@@ -17,8 +17,12 @@ app.use(cors());
 app.use(express.json());
 //app.use(express.static(path.resolve(__dirname, 'static')));
 app.use(fileUpload({ useTempFiles: true }));
+
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+app.set('views', __dirname);
+
 //pass the data from form
-app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 
 app.use(setSecurityHeaders);
