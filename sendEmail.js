@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const sendEmail = async (to, userName) => {
+const sendEmail = async (to, name) => {
   try {
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
@@ -14,7 +14,7 @@ const sendEmail = async (to, userName) => {
     const message = {
       to,
       subject: 'New message from Nodemailer APP',
-      html: `<h3>Hi, ${userName}! You have received a new message from Best Buy Beauty website!</h3>`,
+      html: `<h3>Hi, ${name}! You have received a new message from Best Buy Beauty website!</h3>`,
     };
     const info = await transporter.sendMail(message);
     console.log(('Message sent', info.messageId));

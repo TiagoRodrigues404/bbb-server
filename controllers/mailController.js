@@ -3,9 +3,9 @@ const sendEmail = require('../sendEmail');
 
 class MailController {
   async send(req, res) {
-    const { email, userName } = req.body;
+    const { userEmail, userName } = req.body;
     try {
-      sendEmail(email, userName);
+      sendEmail(userEmail, userName);
     } catch (error) {
       console.log(error);
     }
