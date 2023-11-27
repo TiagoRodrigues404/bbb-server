@@ -15,7 +15,7 @@ const sendEmail = async (to, name, orderNumber) => {
       to,
       subject: `Novo pedido ${orderNumber} no site Best Buy Beauty`,
       html: `
-      <h2>Olá, ${name}!</h2>
+      <h2 style='color: #AD902B; text-align: center;'>Olá, ${name}!</h2>
       <h3>Obrigado pela sua compra!</h3>
       <p>Começaremos a preparar o seu pedido logo que recebermos a confirmação do pagamento.</p>
       <p>Estes são os dados de que precisa para concluir a compra num multibanco ou online:</p>
