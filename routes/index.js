@@ -13,6 +13,7 @@ const ratingRouter = require('./ratingRouter');
 const reviewRouter = require('./reviewRouter');
 const deliveryRouter = require('./deliveryRouter');
 const paymentRouter = require('./paymentRouter');
+const mailRouter = require('./mailRouter');
 
 router.use('/user', userRouter);
 router.use('/type', typeRouter);
@@ -25,5 +26,6 @@ router.use('/review', reviewRouter);
 router.use('/delivery', deliveryRouter);
 router.use('/payment', paymentRouter);
 router.use('/logo', logoRouter);
+router.use('/send-email', mailRouter);
 
 module.exports = router;
