@@ -3,9 +3,9 @@ const sendEmail = require('../sendEmail');
 
 class MailController {
   async send(req, res, next) {
-    const { userEmail, userName } = req.body;
+    const { userEmail, userName, orderNumber } = req.body;
     try {
-      sendEmail(userEmail, userName);
+      sendEmail(userEmail, userName, orderNumber);
       return res.json(req.body);
     } catch (error) {
       next(ApiError.badRequest(error.message));
