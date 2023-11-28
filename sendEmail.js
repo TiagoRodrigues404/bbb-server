@@ -15,8 +15,8 @@ const sendEmail = async (to, name, surname, orderNumber) => {
       to,
       subject: `Detalhes do novo pedido ${orderNumber}`,
       html: `
-          <div style='display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; font-family: Raleway; letter-spacing: 0.5px;'>
-			      <h2 style='color: #252525; text-align: center;'>
+          <div style='text-align: center; font-family: Raleway; letter-spacing: 0.5px;'>
+			<h2 style='color: #252525; text-align: center;'>
               Olá, ${name}!
             </h2>
             <div>
