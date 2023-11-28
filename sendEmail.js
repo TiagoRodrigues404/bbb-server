@@ -38,7 +38,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
                 <p>
                     Após o pagamento deverá enviar um texto de confirmação de pagamento em resposta a esta carta ou para o email <b>bestbuybeauty.pt@gmail.com</b> indicando o número da encomenda.
                 </p>
-                <p>
+                <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                     Data de entrega estimada 1-5 dias úteis. Após recebermos o pagamento da compra.   
                 </p>
                 <h3 style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
