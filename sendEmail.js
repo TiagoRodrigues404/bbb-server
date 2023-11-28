@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const sendEmail = async (to, name, surname, orderNumber, address, phone) => {
+const sendEmail = async (to, name, surname, orderNumber, address, phone, order) => {
   try {
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
@@ -13,7 +13,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone) => {
     });
     const message = {
       to,
-      subject: `Detalhes do novo pedido ${orderNumber}`,
+      subject: `Detalhes do novo pedido №${orderNumber}`,
       html: `
           <div style='text-align: center; font-family: Raleway; letter-spacing: 0.5px;'>
 			<h2 style='color: #252525; text-align: center;'>
@@ -84,7 +84,10 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone) => {
                       <div>
                           <b>{totalCount}</b>
                       </div>                                           
-                  </div>      
+                  </div>    
+                  <div>
+                  ${order}
+                  </div>  
                   {items.map((item, i) =>
                     <div key={i}>
                         <p><b>{i + 1}. {item.name}</b></p>
