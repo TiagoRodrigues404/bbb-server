@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const sendEmail = async (to, name, surname, orderNumber) => {
+const sendEmail = async (to, name, surname, orderNumber, address, phone) => {
   try {
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
@@ -58,27 +58,24 @@ const sendEmail = async (to, name, surname, orderNumber) => {
                   Dados do pedido
               </h3>
               <div>
-                  <div style='display: flex; justify-content: space-between; padding-bottom: 15px;'>
+                  <div style='padding-bottom: 15px;'>
                       <div>
-                          <b>№ de pedido</b>
-                      </div>
-                      <div>
-                          <b>${orderNumber}</b>
+                          <b>№ de pedido: ${orderNumber}</b>
                       </div>
                   </div>
-                  <div style='display: flex; justify-content: flex-start;'>
+                  <div>
                       <div>
                           <b>Envio para o domicílio</b>
                       </div>
                   </div>
-                  <p style='display: flex; justify-content: flex-start;'>
+                  <p>
                       ${name} ${surname}
                   </p>
-                  <p style='display: flex; justify-content: flex-start;'>
-                      {clientAddress}
+                  <p>
+                      ${address}
                   </p>
-                  <p style='display: flex; justify-content: flex-start; border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
-                      Tel.{' ' + clientPhone}
+                  <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
+                      Tel. ${phone}
                   </p>
                   <div style='display: flex; justify-content: space-between;'>
                       <div>
@@ -89,7 +86,7 @@ const sendEmail = async (to, name, surname, orderNumber) => {
                       </div>                                           
                   </div>      
                   {items.map((item, i) =>
-                    <div style='display: flex; flex-direction: column; align-items: flex-start;' key={i}>
+                    <div key={i}>
                         <p><b>{i + 1}. {item.name}</b></p>
                         <p>Marca: {item.company}</p>
                         <p>Código: {item.code}</p>
