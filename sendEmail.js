@@ -47,7 +47,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
               <div>
                   <div style='padding-bottom: 15px;'>
                       <div>
-                          <b>№ de pedido: ${orderNumber}</b>
+                          <b>№ de pedido:</b> ${orderNumber}
                       </div>
                   </div>
                   <div>
