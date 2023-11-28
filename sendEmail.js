@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer');
 
-const sendEmail = async (to, name, surname, orderNumber, address, phone, order) => {
+const sendEmail = async (to, name, surname, orderNumber, address, phone, order, paymentList) => {
   try {
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
@@ -13,10 +13,10 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order) 
     });
     const message = {
       to,
-      subject: `Detalhes do novo pedido №${orderNumber}`,
+      subject: `Detalhes do novo pedido № ${orderNumber}`,
       html: `
-          <div style='text-align: center; font-family: Raleway; letter-spacing: 0.5px;'>
-			<h2 style='color: #252525; text-align: center;'>
+          <div style='font-family: Montserrat; letter-spacing: 0.5px;'>
+			<h2 style='color: #252525;'>
               Olá, ${name}!
             </h2>
             <div>
@@ -30,20 +30,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order) 
                   Estes são os dados de que precisa para concluir a compra num multibanco ou online:
               </p>
               <div style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
-                  <div style='display: flex; justify-content: space-between;'>
-                      <div><b>IBAN</b></div>
-                      <div><b>{paymentDetails.length && !isLoading ? paymentDetails[0].account : 'Carregando...'}</b></div>
-                  </div>
-                  <div style='display: flex; justify-content: space-between;'>
-                      <div><b>Nome</b></div>
-                      <div><b>{paymentDetails.length && !isLoading ? paymentDetails[0].recipient : 'Carregando...'}</b></div>
-                  </div>      
-                  {mbWayPayments.length ? mbWayPayments.map((payment, i) => 
-                  <div style='display: flex; justify-content: space-between;' key={i}>
-                      <div><b>MBway</b></div>
-                      <div><b>{payment.account}</b></div>
-                  </div>  
-                  ) : ''}
+                  ${paymentList}
               </div>
               <p>
                   Tenha presente que terá de realizar o pagamento no máximo <b>de 3 dias</b> corridos. Caso contrário, o seu pedido será cancelado.
@@ -77,67 +64,9 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order) 
                   <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                       Tel. ${phone}
                   </p>
-                  <div style='display: flex; justify-content: space-between;'>
-                      <div>
-                          <b>Quantidade total</b>
-                      </div>
-                      <div>
-                          <b>{totalCount}</b>
-                      </div>                                           
-                  </div>    
                   <div>
                   ${order}
-                  </div>  
-                  {items.map((item, i) =>
-                    <div key={i}>
-                        <p><b>{i + 1}. {item.name}</b></p>
-                        <p>Marca: {item.company}</p>
-                        <p>Código: {item.code}</p>
-                        {item.curlArr
-                            ?
-                            <p>Curvatura: {item.curlArr}</p>
-                            :
-                            ''
-                        }
-                        {item.thicknessArr
-                            ?
-                            <p>Grossura:  {item.thicknessArr} mm</p>
-                            :
-                            ''
-                            }
-                        {item.lengthArr
-                            ?
-                            <p>Tamanho: {item.lengthArr} mm</p>
-                            :
-                            ''
-                        }
-                        {item.info && !item.isLashes
-                            ?
-                            item.info.map((p, i) => 
-                                <p key={i}>{p.title}: {p.description}</p>
-                            )
-                            :''
-                        }
-                        <p>Preço: {item.price} €</p>
-                        <p>Quantidade: {item.count}</p>
-                    </div>
-                  )}
-                  <div style='display: flex; justify-content: space-between; padding-bottom: 15px;'>
-                      <div>
-                          <b>Custo de entrega</b>
-                      </div>
-                      <div>
-                          <b>{deliveryPrice} €</b>
-                      </div>
-                  </div>  
-                  <div style='display: flex; justify-content: space-between; border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
-                      <div>
-                          <b>Valor total</b>
-                      </div>
-                      <div>
-                          <b>{orderTotal} €</b>
-                      </div>
-                  </div>                            
+                  </div>                             
               </div>
           </div>
       `,
