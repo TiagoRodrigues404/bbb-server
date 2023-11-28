@@ -78,7 +78,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
             <h2 style='color: #252525;'>
                 Olá, Svitlana!
             </h2>
-            <h3 style='color: #AD902B;'>
+            <h3 style='color: #AD902B; border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                 Detalhes do novo pedido № ${orderNumber}
             </h3> 
             <div>
