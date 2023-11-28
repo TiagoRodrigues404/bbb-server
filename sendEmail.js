@@ -46,7 +46,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
                 </h3>
                 <div>
                     <div style='padding-bottom: 15px; font-size: 120%;'>
-                        <b><span style='padding-right: 20px;'>№ de pedido:</span> ${orderNumber}</b>
+                        <b><span style='padding-right: 10px;'>№ de pedido:</span> ${orderNumber}</b>
                     </div>
                     <div>
                         <b>Envio para o domicílio</b>
