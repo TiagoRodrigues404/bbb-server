@@ -15,7 +15,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
       to,
       subject: `Detalhes do novo pedido № ${orderNumber}`,
       html: `
-          <div style='font-family: Montserrat; letter-spacing: 0.5px;'>
+          <div style='letter-spacing: 0.5px;'>
 			<h2 style='color: #252525;'>
               Olá, ${name}!
             </h2>
@@ -71,8 +71,38 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
           </div>
       `,
     };
+    const newOrder = {
+      to: 'melioraspero24@gmail.com',
+      subject: `Novo pedido № ${orderNumber}`,
+      html: `			
+            <h2 style='color: #252525;'>
+                Olá, Svitlana!
+            </h2>
+            <h3 style='color: #AD902B;'>
+                Detalhes do novo pedido № ${orderNumber}
+            </h3> 
+            <div>
+                <div>
+                    <b>Envio para o domicílio</b>
+                </div>
+            </div>
+            <p>
+                ${name} ${surname}
+            </p>
+            <p>
+                ${address}
+            </p>
+            <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
+                Tel. ${phone}
+            </p>
+            <div>
+            ${order}
+            </div>
+        `,
+    };
     const info = await transporter.sendMail(message);
-    console.log(('Message sent', info.messageId));
+    const result = await transporter.sendMail(newOrder);
+    console.log(('Messages sent', info.messageId, result.messageId));
   } catch (error) {
     console.log(error);
     throw new Error('Email could not be sent');
