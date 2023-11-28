@@ -41,12 +41,12 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
                 <p>
                     Data de entrega estimada 1-5 dias úteis. Após recebermos o pagamento da compra.   
                 </p>
-                <h2 style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
+                <h3 style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                     Dados do pedido
-                </h2>
+                </h3>
                 <div>
                     <div style='padding-bottom: 15px; font-size: 120%;'>
-                        <b><span style='padding-right: 40px;'>№ de pedido:</span> ${orderNumber}</b>
+                        <b><span style='padding-right: 20px;'>№ de pedido:</span> ${orderNumber}</b>
                     </div>
                     <div>
                         <b>Envio para o domicílio</b>
@@ -60,7 +60,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
                     <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                         Tel. ${phone}
                     </p>
-                    <div>
+                    <div style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                         ${order}
                     </div>                             
                 </div>
@@ -89,7 +89,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
             <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                 Tel. ${phone}
             </p>
-            <div>
+            <div style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                 ${order}
             </div>
         `,
