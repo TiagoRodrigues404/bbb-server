@@ -10,7 +10,6 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
       host: 'smtp.gmail.com',
       port: 465,
       secure: true,
-      from: user,
       auth: {
         user,
         pass,
@@ -18,6 +17,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
     });
     const message = {
       to,
+      from: user,
       subject: `Detalhes do novo pedido № ${orderNumber}`,
       html: `
             <div style='letter-spacing: 0.5px;'>
