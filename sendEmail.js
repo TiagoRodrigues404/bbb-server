@@ -1,4 +1,8 @@
 const nodemailer = require('nodemailer');
+require('dotenv').config();
+
+const user = process.env.EMAIL_USER;
+const pass = process.env.EMAIL_PASSWORD;
 
 const sendEmail = async (to, name, surname, orderNumber, address, phone, order, paymentList) => {
   try {
@@ -7,8 +11,8 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
       port: 465,
       secure: true,
       auth: {
-        user: 'melioraspero24@gmail.com',
-        pass: 'dsocxlxfbqfzorvw',
+        user,
+        pass,
       },
     });
     const message = {
@@ -68,7 +72,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
         `,
     };
     const newOrder = {
-      to: 'melioraspero24@gmail.com',
+      to: 'bestbuybeauty.pt@gmail.com',
       subject: `Novo pedido № ${orderNumber}`,
       html: `			
             <h2 style='color: #252525;'>
