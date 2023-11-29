@@ -17,7 +17,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
     });
     const message = {
       to,
-      from: `BEST BUY BEAUTY ${user}`,
+      from: `Best Buy Beauty ${user}`,
       subject: `Detalhes do novo pedido № ${orderNumber}`,
       html: `
             <div style='letter-spacing: 0.5px;'>
@@ -74,6 +74,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
     };
     const newOrder = {
       to: user,
+      from: `Best Buy Beauty ${user}`,
       subject: `Novo pedido № ${orderNumber}`,
       html: `			
             <h2 style='color: #252525;'>
