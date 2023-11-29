@@ -10,6 +10,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
       host: 'smtp.gmail.com',
       port: 465,
       secure: true,
+      from: user,
       auth: {
         user,
         pass,
@@ -72,7 +73,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
         `,
     };
     const newOrder = {
-      to: 'bestbuybeauty.pt@gmail.com',
+      to: user,
       subject: `Novo pedido № ${orderNumber}`,
       html: `			
             <h2 style='color: #252525;'>
