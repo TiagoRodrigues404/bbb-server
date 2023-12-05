@@ -20,7 +20,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
       from: `Best Buy Beauty ${user}`,
       subject: `Detalhes do novo pedido № ${orderNumber}`,
       html: `
-            <div style='letter-spacing: 0.5px;'>
+            <div style='letter-spacing: 0.5px; text-align: center'>
                 <h2 style='color: #252525;'>
                     Olá, ${name}!
                 </h2>
