@@ -37,7 +37,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
                 <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                     Método de pagamento na sua escolha:
                 </p>
-                <div style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0; text-align: left; margin: 0 auto;'>
+                <div style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0; text-align: left; align-self: center;'>
                     ${paymentList}
                 </div>
                 <p>
