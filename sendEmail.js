@@ -31,13 +31,13 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
                 <p>
                     Começaremos a preparar o seu pedido logo que recebermos a confirmação do pagamento.
                 </p>
-                <p style='padding: 0 0 20px 0;'>
+                <p>
                     Estes são os dados de que precisa para concluir a compra num multibanco ou online.
                 </p>
                 <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                     Método de pagamento na sua escolha:
                 </p>
-                <div style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0; text-align: left;'>
+                <div style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0; text-align: left; margin: 0 auto;'>
                     ${paymentList}
                 </div>
                 <p>
