@@ -20,7 +20,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
       from: `Best Buy Beauty ${user}`,
       subject: `Detalhes do novo pedido № ${orderNumber}`,
       html: `
-            <div style='letter-spacing: 0.5px; text-align: center'>
+            <div style='letter-spacing: 0.5px; text-align: center; padding: 15px; background-color: #f6f6f6;'>
                 <h2 style='color: #252525;'>
                     Olá, ${name}!
                 </h2>
@@ -31,8 +31,11 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
                 <p>
                     Começaremos a preparar o seu pedido logo que recebermos a confirmação do pagamento.
                 </p>
+                <p style='padding: 0 0 20px 0;'>
+                    Estes são os dados de que precisa para concluir a compra num multibanco ou online.
+                </p>
                 <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
-                    Estes são os dados de que precisa para concluir a compra num multibanco ou online. Método de pagamento na sua escolha:
+                    Método de pagamento na sua escolha:
                 </p>
                 <div style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                     ${paymentList}
