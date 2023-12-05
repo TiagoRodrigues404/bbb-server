@@ -21,7 +21,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
       subject: `Detalhes do novo pedido № ${orderNumber}`,
       html: `
             <div style='background-color: #f6f6f6; padding: 30px 0;'>
-            <div style='letter-spacing: 0.5px; text-align: center; padding: 15px; background-color: #fff; width: 280px; margin: auto; box-shadow: 5px 5px 5px #d9d9d95f;'>
+            <div style='letter-spacing: 0.5px; text-align: center; padding: 15px; background-color: #fff; width: 280px; margin: auto;'>
                 <h2 style='color: #252525;'>
                     Olá, ${name}!
                 </h2>
@@ -106,8 +106,8 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
         `,
     };
     const info = await transporter.sendMail(message);
-    //const result = await transporter.sendMail(newOrder);
-    //console.log(('Messages sent', info.messageId, result.messageId));
+    const result = await transporter.sendMail(newOrder);
+    console.log(('Messages sent', info.messageId, result.messageId));
   } catch (error) {
     console.log(error);
     throw new Error('Email could not be sent');
