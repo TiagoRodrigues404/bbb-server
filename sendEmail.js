@@ -32,7 +32,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
                     Começaremos a preparar o seu pedido logo que recebermos a confirmação do pagamento.
                 </p>
                 <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
-                    Estes são os dados de que precisa para concluir a compra num multibanco ou online:
+                    Estes são os dados de que precisa para concluir a compra num multibanco ou online. Método de pagamento na sua escolha:
                 </p>
                 <div style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                     ${paymentList}
@@ -41,7 +41,7 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
                     Tenha presente que terá de realizar o pagamento no máximo <b>de 3 dias</b> corridos. Caso contrário, o seu pedido será cancelado.
                 </p>
                 <p>
-                    Após o pagamento deverá enviar um texto de confirmação de pagamento em resposta a esta carta ou para o email <b>bestbuybeauty.pt@gmail.com</b> indicando o número da encomenda.
+                    Após o pagamento deverá enviar um texto de confirmação de pagamento em resposta a esta carta ou para o email <b>bestbuybeauty.pt@gmail.com</b> indicando o número de pedido.
                 </p>
                 <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                     Data de entrega estimada 1-5 dias úteis. Após recebermos o pagamento da compra.   
@@ -101,8 +101,8 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
         `,
     };
     const info = await transporter.sendMail(message);
-    const result = await transporter.sendMail(newOrder);
-    console.log(('Messages sent', info.messageId, result.messageId));
+    //const result = await transporter.sendMail(newOrder);
+    //console.log(('Messages sent', info.messageId, result.messageId));
   } catch (error) {
     console.log(error);
     throw new Error('Email could not be sent');
