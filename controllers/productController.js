@@ -274,7 +274,7 @@ class ProductController {
   }
 
   async getAll(req, res) {
-    const { categoryId, brandId, typeId, limit = 24, page = 1, rating, name, price } = req.query;
+    const { categoryId, brandId, typeId, limit, page = 1, rating, name, price } = req.query;
     const offset = page * limit - limit;
 
     let sort = req.query.sort ? req.query.sort : 'rating';
