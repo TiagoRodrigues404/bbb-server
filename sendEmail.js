@@ -66,8 +66,11 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
                     <p>
                         ${address}
                     </p>
-                    <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
+                    <p>
                         Tel. ${phone}
+                    </p>
+                    <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
+                        E-mail ${to}
                     </p>
                     <div style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                         ${order}
@@ -97,8 +100,11 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
             <p>
                 ${address}
             </p>
-            <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
+            <p>
                 Tel. ${phone}
+            </p>
+            <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
+                E-mail ${to}
             </p>
             <div style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                 ${order}
