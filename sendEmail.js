@@ -4,7 +4,17 @@ require('dotenv').config();
 const user = process.env.EMAIL_USER;
 const pass = process.env.EMAIL_PASSWORD;
 
-const sendEmail = async (to, name, surname, orderNumber, address, phone, order, paymentList) => {
+const sendEmail = async (
+  to,
+  name,
+  surname,
+  orderNumber,
+  company,
+  address,
+  phone,
+  order,
+  paymentList
+) => {
   try {
     const transporter = nodemailer.createTransport({
       host: 'smtp.gmail.com',
@@ -64,6 +74,9 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
                         ${name} ${surname}
                     </p>
                     <p>
+                        ${company}
+                    </p>
+                    <p>
                         ${address}
                     </p>
                     <p>
@@ -96,6 +109,9 @@ const sendEmail = async (to, name, surname, orderNumber, address, phone, order, 
             </div>
             <p>
                 ${name} ${surname}
+            </p>
+            <p>
+                ${company}
             </p>
             <p>
                 ${address}
