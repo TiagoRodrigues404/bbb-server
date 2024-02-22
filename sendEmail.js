@@ -11,6 +11,7 @@ const sendEmail = async (
   orderNumber,
   company,
   address,
+  postalCode,
   phone,
   order,
   paymentList
@@ -80,6 +81,9 @@ const sendEmail = async (
                         ${address}
                     </p>
                     <p>
+                        ${postalCode}
+                    </p>
+                    <p>
                         Tel. ${phone}
                     </p>
                     <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
@@ -115,6 +119,9 @@ const sendEmail = async (
             </p>
             <p>
                 ${address}
+            </p>
+            <p>
+                ${postalCode}
             </p>
             <p>
                 Tel. ${phone}

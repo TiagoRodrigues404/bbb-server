@@ -10,6 +10,7 @@ class MailController {
       orderNumber,
       userCompany,
       userAddress,
+      userPostalCode,
       userPhone,
       userOrder,
       paymentList,
@@ -22,6 +23,7 @@ class MailController {
         orderNumber,
         userCompany,
         userAddress,
+        userPostalCode,
         userPhone,
         userOrder,
         paymentList
