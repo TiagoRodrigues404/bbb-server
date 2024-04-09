@@ -12,6 +12,7 @@ const sendEmail = async (
   company,
   address,
   postalCode,
+  comment,
   phone,
   order,
   paymentList
@@ -86,8 +87,11 @@ const sendEmail = async (
                     <p>
                         Tel. ${phone}
                     </p>
-                    <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
+                    <p>
                         E-mail ${to}
+                    </p>
+                    <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
+                        Um comentário: ${comment}
                     </p>
                     <div style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                         ${order}
@@ -126,8 +130,11 @@ const sendEmail = async (
             <p>
                 Tel. ${phone}
             </p>
-            <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
+            <p>
                 E-mail ${to}
+            </p>
+            <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
+                Um comentário: ${comment}
             </p>
             <div style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                 ${order}

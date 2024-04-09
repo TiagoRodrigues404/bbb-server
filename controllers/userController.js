@@ -155,6 +155,7 @@ class UserController {
       country,
       region,
       postalCode,
+      userComment,
       mainAddress,
       deletedAddressId,
       updatedAddressId,
@@ -196,6 +197,7 @@ class UserController {
         deliveryPrice,
         sum,
         orderNumber,
+        userComment,
       });
       items = JSON.parse(items);
       items.forEach(item => {

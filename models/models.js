@@ -25,6 +25,7 @@ const UserOrder = sequelize.define('user_order', {
   sum: { type: DataTypes.INTEGER, allowNull: false },
   deliveryPrice: { type: DataTypes.STRING, allowNull: false },
   orderNumber: { type: DataTypes.STRING, allowNull: false },
+  userComment: { type: DataTypes.STRING, allowNull: true },
 });
 
 const UserAddress = sequelize.define('user_address', {

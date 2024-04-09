@@ -11,6 +11,7 @@ class MailController {
       userCompany,
       userAddress,
       userPostalCode,
+      userComment,
       userPhone,
       userOrder,
       paymentList,
@@ -24,6 +25,7 @@ class MailController {
         userCompany,
         userAddress,
         userPostalCode,
+        userComment,
         userPhone,
         userOrder,
         paymentList
