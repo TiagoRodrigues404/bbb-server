@@ -12,8 +12,10 @@ cloudinary.config({
 const upload = async file => {
   const image = await cloudinary.uploader.upload(
     file,
-    { quality: 'auto:good' },
-    { folder: 'static' },
+    {
+      folder: 'static',
+      quality: 'auto',
+    },
     result => result
   );
   return image;
