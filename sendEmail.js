@@ -57,7 +57,7 @@ const sendEmail = async (
                     Tenha presente que terá de realizar o pagamento no máximo <b>de 3 dias</b> corridos. Caso contrário, o seu pedido será cancelado.
                 </p>
                 <p>
-                    Após o pagamento deverá enviar um texto de confirmação de pagamento em resposta a esta carta ou para o email <b>bestbuybeauty.pt@gmail.com</b> indicando o número de pedido.
+                    Após o pagamento deverá enviar um comprovativo de pagamento em resposta a esta carta ou para o email <b>bestbuybeauty.pt@gmail.com</b> indicando o número de pedido.
                 </p>
                 <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
                     Data de entrega estimada 1-5 dias úteis. Após recebermos o pagamento da compra.   

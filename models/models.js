@@ -60,6 +60,7 @@ const Product = sequelize.define('product', {
   img: { type: DataTypes.STRING, allowNull: false },
   isLashes: { type: DataTypes.BOOLEAN, allowNull: false },
   available: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true },
+  topProduct: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
 });
 
 const ProductSlide = sequelize.define('product_slide', {

@@ -24,6 +24,7 @@ class ProductController {
         info,
         isLashes,
         available,
+        topProduct,
         text,
         compound,
         applying,
@@ -63,6 +64,7 @@ class ProductController {
         img: fileName,
         isLashes,
         available,
+        topProduct,
       });
 
       ProductText.create({
@@ -139,6 +141,7 @@ class ProductController {
       compound,
       deletedSlideId,
       available,
+      topProduct,
     } = req.body;
 
     const { img } = req.files ? req.files : '';
@@ -194,7 +197,7 @@ class ProductController {
       props = { ...props, rating };
     }
 
-    props = { ...props, isLashes, available };
+    props = { ...props, isLashes, available, topProduct };
 
     const product = await Product.update(props, options);
 
