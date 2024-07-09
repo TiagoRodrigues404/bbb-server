@@ -56,6 +56,7 @@ const Product = sequelize.define('product', {
   code: { type: DataTypes.INTEGER, allowNull: false, unique: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   price: { type: DataTypes.NUMBER, allowNull: false },
+  discountPrice: { type: DataTypes.NUMBER, allowNull: true, defaultValue: null },
   rating: { type: DataTypes.NUMBER, defaultValue: 0 },
   img: { type: DataTypes.STRING, allowNull: false },
   isLashes: { type: DataTypes.BOOLEAN, allowNull: false },
