@@ -18,6 +18,7 @@ class ProductController {
         name,
         code,
         price,
+        discountPrice,
         categoryId,
         brandId,
         typeId,
@@ -58,6 +59,7 @@ class ProductController {
         name,
         code,
         price,
+        discountPrice,
         categoryId,
         brandId,
         typeId,
@@ -131,6 +133,7 @@ class ProductController {
       rating,
       code,
       price,
+      discountPrice,
       categoryId,
       brandId,
       typeId,
@@ -196,6 +199,7 @@ class ProductController {
     if (rating) {
       props = { ...props, rating };
     }
+    props = { ...props, discountPrice };
 
     props = { ...props, isLashes, available, topProduct };
 
