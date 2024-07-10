@@ -281,7 +281,17 @@ class ProductController {
   }
 
   async getAll(req, res) {
-    const { categoryId, brandId, typeId, limit = 24, page = 1, rating, name, price } = req.query;
+    const {
+      categoryId,
+      brandId,
+      typeId,
+      limit = 24,
+      page = 1,
+      rating,
+      name,
+      price,
+      discountPrice,
+    } = req.query;
     const offset = page * limit - limit;
 
     let sort = req.query.sort ? req.query.sort : 'rating';
@@ -324,6 +334,10 @@ class ProductController {
 
     if (price) {
       options.where = { ...options.where, price };
+    }
+
+    if (discountPrice) {
+      options.where = { ...options.where, discountPrice };
     }
 
     const products = await Product.findAndCountAll(options);
