@@ -344,6 +344,10 @@ class ProductController {
       options.where = { ...options.where, discountPrice };
     }
 
+    if (isPromo) {
+      options.where = { ...options.where, isPromo };
+    }
+
     const products = await Product.findAndCountAll(options);
     products.sort = req.query.sort;
     return res.json(products);
