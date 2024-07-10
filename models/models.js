@@ -62,6 +62,7 @@ const Product = sequelize.define('product', {
   available: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: true },
   topProduct: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
   discountPrice: { type: DataTypes.NUMBER, allowNull: true, defaultValue: 0 },
+  isPromo: { type: DataTypes.BOOLEAN, allowNull: false, defaultValue: false },
 });
 
 const ProductSlide = sequelize.define('product_slide', {

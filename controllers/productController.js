@@ -19,6 +19,7 @@ class ProductController {
         code,
         price,
         discountPrice,
+        isPromo,
         categoryId,
         brandId,
         typeId,
@@ -60,6 +61,7 @@ class ProductController {
         code,
         price,
         discountPrice,
+        isPromo,
         categoryId,
         brandId,
         typeId,
@@ -134,6 +136,7 @@ class ProductController {
       code,
       price,
       discountPrice,
+      isPromo,
       categoryId,
       brandId,
       typeId,
@@ -201,7 +204,7 @@ class ProductController {
     }
     props = { ...props, discountPrice };
 
-    props = { ...props, isLashes, available, topProduct };
+    props = { ...props, isLashes, available, topProduct, isPromo };
 
     const product = await Product.update(props, options);
 
@@ -291,6 +294,7 @@ class ProductController {
       name,
       price,
       discountPrice,
+      isPromo,
     } = req.query;
     const offset = page * limit - limit;
 
