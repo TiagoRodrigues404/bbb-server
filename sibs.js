@@ -304,11 +304,10 @@ async function processWebhookRequest(req) {
   try {
     const decipher = crypto.createDecipheriv("aes-256-gcm", secretKey, nonce);
     decipher.setAuthTag(tag);
-
     let decrypted = decipher.update(ciphertext, null, "utf8");
     decrypted += decipher.final("utf8");
-
     const webhookModel = JSON.parse(decrypted);
+
     return webhookModel;
   } catch (error) {
     throw new Error("Erro ao processar o webhook");
