@@ -15,7 +15,8 @@ const setSecurityHeaders = (_, res, next) => {
     'Strict-Transport-Security': 'max-age=31536000; includeSubDomains',
     'Expect-CT': 'enforce, max-age=86400',
     'Content-Security-Policy': `object-src 'none'; script-src 'self'; img-src 'self'; frame-ancestors 'self'; require-trusted-types-for 'script'; block-all-mixed-content; upgrade-insecure-requests`,
-    'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=()',
+    'Permissions-Policy':
+      'camera=(), microphone=(), geolocation=(self), payment=(self "https://api.sibspayments.com/api/v2/payments" "https://best-buy-beauty.com")',
   });
   next();
 };
