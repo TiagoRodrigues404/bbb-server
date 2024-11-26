@@ -38,6 +38,9 @@ const sendNewPass = async (to, name, newPassword) => {
                     <p>
                         Use-o para fazer login em sua conta.
                     </p>
+                    <a href="https://best-buy-beauty.com/#/login">
+                        Vá para a página de login
+                    </a>
                     <p>
                         Você sempre pode alterá-lo posteriormente em sua conta pessoal.
                     </p>
