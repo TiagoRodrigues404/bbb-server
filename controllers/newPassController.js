@@ -2,7 +2,7 @@ const ApiError = require('../error/ApiError');
 const sendNewPass = require('../sendNewPass');
 
 class NewPassController {
-  async send(req, res, next) {
+  async sendPass(req, res, next) {
     const {
       userEmail,
       userName,
