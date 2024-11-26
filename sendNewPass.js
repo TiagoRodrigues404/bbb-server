@@ -17,19 +17,39 @@ const sendNewPass = async (to, name, newPassword) => {
     });
     const message = {
       to,
-      from: `Best Buy Beauty ${user}`,
+      from: `Best Buy Beauty <no-reply@best-buy-beauty.com>`,
       subject: `Solicitação de alteração de senha`,
       html: `
-<div>${newPassword}</div>
+        <div style='background-color: #f6f6f6; padding: 30px 0;'>
+            <div style='letter-spacing: 0.5px; text-align: center; padding: 15px; background-color: #fff; width: 280px; margin: auto;'>
+                <h2 style='color: #252525;'>
+                    Olá, ${name}!
+                </h2>
+                <div>
+                    <h3 style='color: #AD902B;'>
+                        Você recebeu este e-mail porque solicitou a alteração da senha da sua conta.
+                    </h3>                        
+                    <p>
+                        Este e-mail fornece uma nova senha.
+                    </p>
+                    <p style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
+                        Data de entrega estimada 1 dia útil. Após recebermos o pagamento da compra.   
+                    </p>
+                    <h3 style='border-bottom: 2px solid #f6f6f6; padding: 0 0 20px 0;'>
+                        ${newPassword}
+                    </h3>
+                    <p>
+                        Use-o para fazer login em sua conta.
+                    </p>
+                    <p>
+                        Você sempre pode alterá-lo posteriormente em sua conta pessoal.
+                    </p>
+                </div>    
+            </div>
+        </div>
         `,
     };
-    transporter.verify(function (error, success) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Server is ready to take our messages');
-      }
-    });
+
     const info = await transporter.sendMail(message);
 
     console.log(('Message sent', info.messageId));
