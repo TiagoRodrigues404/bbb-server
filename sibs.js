@@ -295,7 +295,7 @@ async function webhook(req) {
 async function processWebhookRequest(req) {
   const requestTag = req.headers["x-authentication-tag"];
   const requestVector = req.headers["x-initialization-vector"];
-  const secretKey = Buffer.from(process.env.SECRET_KEY, "base64");
+  const secretKey = Buffer.from(process.env.WEBHOOK_SECRET_KEY, "base64");
   const encryptedBody = await readRawBody(req);
   const ciphertext = Buffer.from(encryptedBody, "base64");
   const nonce = Buffer.from(requestVector, "base64");

@@ -109,74 +109,75 @@ class SIBSController {
         order.paymentStatus = webhookModel.paymentStatus;
         await order.save();
 
-        try {
-          if (webhookModel.paymentMethod === "REFERENCE") {
-            webhookModel.paymentReference = {
-              reference: order.reference,
-              entity: order.entity,
-            };
-          }
+        if(webhookModel.paymentStatus === "Success"){
+          try {
+            if (webhookModel.paymentMethod === "REFERENCE") {
+              webhookModel.paymentReference = {
+                reference: order.reference,
+                entity: order.entity,
+              };
+            }
+  
+            const userOrder = await UserOrder.findOne({
+              where: { orderNumber: order.orderID },
+              include: [
+                {
+                  model: OrderItem,
+                  as: "item",
+                },
+              ],
+            });
+  
+            if (!userOrder || !userOrder.item || userOrder.item.length === 0) {
+              throw new Error("Nenhum item encontrado para este pedido.");
+            }
+  
+            const orderItems = userOrder.item.map((orderItem) => {
+              const descriptionLines = orderItem.description.split("\n");
 
-          const userOrder = await UserOrder.findOne({
-            where: { orderNumber: order.orderID },
-            include: [
-              {
-                model: OrderItem,
-                as: "item",
-              },
-            ],
-          });
-
-          if (!userOrder || !userOrder.item || userOrder.item.length === 0) {
-            throw new Error("Nenhum item encontrado para este pedido.");
-          }
-
-          const orderItems = userOrder.item.map((orderItem) => {
-            const descriptionLines = orderItem.description.split("\n");
-            const descriptionObject = {
-              company: descriptionLines[0].replace("Marca: ", ""),
-              code: descriptionLines[1].replace("Código: ", ""),
-              additionalInfo: descriptionLines[2] ? descriptionLines[2] : "",
-              price: parseFloat(descriptionLines[descriptionLines.length - 2].replace("Preço: ", "").replace(" €", "")),
-              count: parseInt(descriptionLines[descriptionLines.length - 1].replace("Quantidade: ", "")),
-            };
-
-            return {
-              name: descriptionObject.company,
-              company: descriptionObject.company,
-              code: descriptionObject.code,
-              additionalInfo: descriptionObject.additionalInfo,
-              price: descriptionObject.price,
-              count: descriptionObject.count,
-            };
-          });
-
-          const totalCount = orderItems.reduce((total, item) => total + item.count, 0);
-          const deliveryPrice = userOrder.deliveryPrice;
-          const totalPrice = parseFloat(userOrder.sum);
-          const orderHTML = email.formatOrderToHTML(orderItems, totalCount, deliveryPrice, totalPrice);
-          const customerAddress = await UserAddress.findOne({
-            where: { email: order.customerEmail },
-          });
-
-          if (!customerAddress) {
-            throw new Error("Nenhum Cliente encontrado para este pedido.");
-          }
-
-          if(webhookModel.paymentMethod === "REFERENCE"){
-            await email.referencePaidEmail(
-              customerAddress.email,
-              customerAddress.firstName,
-              customerAddress.lastName,
-              order.orderID,
-              customerAddress.company,
-              `Rua: ${customerAddress.firstAddress}, Número da porta: ${customerAddress.secondAddress}, Código postal/ZIP: ${customerAddress.postalCode}, ${customerAddress.city}, ${customerAddress.region}, ${customerAddress.country}`,
-              userOrder.userComment,
-              customerAddress.phone,
-              webhookModel.paymentStatus
-            );
-
-            if(webhookModel.paymentStatus === "Success"){
+              const descriptionObject = {
+                company: descriptionLines[0].replace("Marca: ", ""),
+                code: descriptionLines[1].replace("Código: ", ""),
+                additionalInfo: descriptionLines[2] ? descriptionLines[2] : "",
+                price: parseFloat(descriptionLines[descriptionLines.length - 2].replace("Preço: ", "").replace(" €", "")),
+                count: parseInt(descriptionLines[descriptionLines.length - 1].replace("Quantidade: ", "")),
+              };
+  
+              return {
+                name: orderItem.title,
+                company: descriptionObject.company,
+                code: descriptionObject.code,
+                additionalInfo: descriptionObject.additionalInfo,
+                price: descriptionObject.price,
+                count: descriptionObject.count,
+              };
+            });
+            
+            const totalCount = orderItems.reduce((total, item) => total + item.count, 0);
+            const deliveryPrice = userOrder.deliveryPrice;
+            const totalPrice = parseFloat(userOrder.sum);
+            const orderHTML = email.formatOrderToHTML(orderItems, totalCount, deliveryPrice, totalPrice);
+            const customerAddress = await UserAddress.findOne({
+              where: { email: order.customerEmail },
+            });
+  
+            if (!customerAddress) {
+              throw new Error("Nenhum Cliente encontrado para este pedido.");
+            }
+  
+            if(webhookModel.paymentMethod === "REFERENCE"){
+              await email.referencePaidEmail(
+                customerAddress.email,
+                customerAddress.firstName,
+                customerAddress.lastName,
+                order.orderID,
+                customerAddress.company,
+                `Rua: ${customerAddress.firstAddress}, Número da porta: ${customerAddress.secondAddress}, Código postal/ZIP: ${customerAddress.postalCode}, ${customerAddress.city}, ${customerAddress.region}, ${customerAddress.country}`,
+                userOrder.userComment,
+                customerAddress.phone,
+                webhookModel.paymentStatus
+              );
+  
               await email.sendEmailToStore(
                 customerAddress.email,
                 customerAddress.firstName,
@@ -188,9 +189,7 @@ class SIBSController {
                 customerAddress.phone,
                 orderHTML
               );
-            }
-          }else{
-            if(webhookModel.paymentStatus === "Success"){
+            }else{
               email.sendCompletedEmail(
                 customerAddress.email,
                 customerAddress.firstName,
@@ -204,12 +203,10 @@ class SIBSController {
                 webhookModel
               );
             }
+          } catch (error) {
+            console.error(`Erro durante o processamento do email: ${error.message}`);
           }
-        } catch (error) {
-          console.error(`Erro durante o processamento do email: ${error.message}`);
         }
-      } else {
-        console.log("Nenhum pedido encontrado para a transação: ", webhookModel.transactionID);
       }
 
       return res.json(sibs.generateWebhookResponse(webhookModel));
