@@ -134,25 +134,35 @@ class SIBSController {
   
             const orderItems = userOrder.item.map((orderItem) => {
               const descriptionLines = orderItem.description.split("\n");
+              const priceIndex = descriptionLines.findIndex(line => line.startsWith("Preço:"));
+              const hasOptions = descriptionLines.some(line => line.startsWith("Opções:"));
 
               const descriptionObject = {
+                name: orderItem.title,
                 company: descriptionLines[0].replace("Marca: ", ""),
                 code: descriptionLines[1].replace("Código: ", ""),
-                additionalInfo: descriptionLines.length > 4 ? descriptionLines[2] : "",
-                price: parseFloat(descriptionLines[descriptionLines.length - 2].replace("Preço: ", "").replace(" €", "")),
-                count: parseInt(descriptionLines[descriptionLines.length - 1].replace("Quantidade: ", "")),
+                price: parseFloat(descriptionLines[priceIndex].replace("Preço: ", "").replace(" €", "")).toFixed(2),
+                count: parseInt(descriptionLines.find(line => line.startsWith("Quantidade:")).replace("Quantidade: ", "")),
+                isLashes: hasOptions,
+                info: {}
               };
-  
-              return {
-                name: orderItem.title,
-                company: descriptionObject.company,
-                code: descriptionObject.code,
-                additionalInfo: descriptionObject.additionalInfo,
-                price: descriptionObject.price,
-                count: descriptionObject.count,
-              };
-            });
             
+              descriptionLines.slice(2, priceIndex).forEach(line => {
+                const cleanLine = line.startsWith(",") ? line.slice(1).trim() : line.trim();
+                if (line.startsWith("Opções:")) {
+                  const options = cleanLine.replace("Opções: ", "").split(" / ");
+                  descriptionObject.curlArr = options[0];
+                  descriptionObject.thicknessArr = options[1];
+                  descriptionObject.lengthArr = options[2];
+                } else {
+                  const [title, description] = cleanLine.split(":").map(part => part.trim());
+                  descriptionObject.info[title] = description;
+                }
+              });
+
+              return descriptionObject;
+            });
+                        
             const totalCount = orderItems.reduce((total, item) => total + item.count, 0);
             const deliveryPrice = userOrder.deliveryPrice;
             const totalPrice = parseFloat(userOrder.sum);
