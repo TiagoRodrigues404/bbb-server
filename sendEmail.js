@@ -134,25 +134,26 @@ const sendEmailToStore = async (
 function formatOrderToHTML(orderItems, totalCount, deliveryPrice, totalPrice) {
   const formattedOrder = orderItems
     .map((item, index) => {
-      if (item.additionalInfo) {
-        const options = item.additionalInfo.replace("Opções: ", "").split(" / ");
-        item.curlArr = options[0];
-        item.thicknessArr = options[1];
-        item.lengthArr = options[2];
+      let detailsHTML = "";
+
+      if (item.isLashes) {
+        detailsHTML += `Curvatura: ${item.curlArr}<br>Grossura: ${item.thicknessArr} mm<br>Tamanho: ${item.lengthArr} mm<br>`;
+      }
+
+      if (Object.keys(item.info).length > 0) {
+        Object.entries(item.info).forEach(([key, value]) => {
+          detailsHTML += `${key}: ${value}<br>`;
+        });
       }
 
       return (
         (index > 0 ? "<br><br>" : "") +
-        "<b>" + (index + 1) + ". " + item.name +
-        "</b><br>Marca: " + item.company +
-        "<br>Código: " + item.code +
-        "<br>" + (item.curlArr ? "Curvatura: " + item.curlArr + "<br>" : "") +
-        (item.thicknessArr ? "Grossura: " + item.thicknessArr + " mm<br>" : "") +
-        (item.lengthArr ? "Tamanho: " + item.lengthArr + " mm<br>" : "") +
-        (!item.isLashes && item.info && Array.isArray(item.info) ? item.info
-              .map((obj) => obj.title + ": " + obj.description + "<br>").join("") : "") +
-        "Preço: " + item.price + " €<br>" +
-        "Quantidade: " + item.count
+        `<b>${index + 1}. ${item.name}</b><br>` +
+        `Marca: ${item.company}<br>` +
+        `Código: ${item.code}<br>` +
+        detailsHTML +
+        `Preço: ${item.price} €<br>` +
+        `Quantidade: ${item.count}`
       );
     }
   ).join("");
