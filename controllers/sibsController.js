@@ -138,7 +138,7 @@ class SIBSController {
               const descriptionObject = {
                 company: descriptionLines[0].replace("Marca: ", ""),
                 code: descriptionLines[1].replace("Código: ", ""),
-                additionalInfo: descriptionLines[2] ? descriptionLines[2] : "",
+                additionalInfo: descriptionLines.length > 4 ? descriptionLines[2] : "",
                 price: parseFloat(descriptionLines[descriptionLines.length - 2].replace("Preço: ", "").replace(" €", "")),
                 count: parseInt(descriptionLines[descriptionLines.length - 1].replace("Quantidade: ", "")),
               };
