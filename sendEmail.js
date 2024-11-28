@@ -134,35 +134,28 @@ const sendEmailToStore = async (
 function formatOrderToHTML(orderItems, totalCount, deliveryPrice, totalPrice) {
   const formattedOrder = orderItems
     .map((item, index) => {
+      if (item.additionalInfo) {
+        const options = item.additionalInfo.replace("Opções: ", "").split(" / ");
+        item.curlArr = options[0];
+        item.thicknessArr = options[1];
+        item.lengthArr = options[2];
+      }
+
       return (
         (index > 0 ? "<br><br>" : "") +
-        "<b>" +
-        (index + 1) +
-        ". " +
-        item.name +
-        "</b><br>Marca: " +
-        item.company +
-        "<br>Código: " +
-        item.code +
-        "<br>" +
-        (item.curlArr ? "Curvatura: " + item.curlArr + "<br>" : "") +
-        (item.thicknessArr
-          ? "Grossura: " + item.thicknessArr + " mm<br>"
-          : "") +
+        "<b>" + (index + 1) + ". " + item.name +
+        "</b><br>Marca: " + item.company +
+        "<br>Código: " + item.code +
+        "<br>" + (item.curlArr ? "Curvatura: " + item.curlArr + "<br>" : "") +
+        (item.thicknessArr ? "Grossura: " + item.thicknessArr + " mm<br>" : "") +
         (item.lengthArr ? "Tamanho: " + item.lengthArr + " mm<br>" : "") +
-        (!item.isLashes && item.info && Array.isArray(item.info)
-          ? item.info
-              .map((obj) => obj.title + ": " + obj.description + "<br>")
-              .join("")
-          : "") +
-        "Preço: " +
-        item.price +
-        " €<br>" +
-        "Quantidade: " +
-        item.count
+        (!item.isLashes && item.info && Array.isArray(item.info) ? item.info
+              .map((obj) => obj.title + ": " + obj.description + "<br>").join("") : "") +
+        "Preço: " + item.price + " €<br>" +
+        "Quantidade: " + item.count
       );
-    })
-    .join("");
+    }
+  ).join("");
 
   const orderSummary =
     '<br><br><b style="font-size: 110%; padding-bottom: 20px;"><span style="padding-right: 10px;">Quantidade total: </span>' +
@@ -171,8 +164,7 @@ function formatOrderToHTML(orderItems, totalCount, deliveryPrice, totalPrice) {
     deliveryPrice +
     " €</b>" +
     '<br><br><b style="font-size: 125%; color: #AD902B; padding-bottom: 20px;"><span style="padding-right: 10px;">Valor total: </span>' +
-    (parseFloat(totalPrice) + parseFloat(deliveryPrice)).toFixed(2) +
-    " €</b>";
+    parseFloat(totalPrice) + " €</b>";
 
   return formattedOrder + orderSummary;
 }
