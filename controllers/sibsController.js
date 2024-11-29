@@ -142,7 +142,7 @@ class SIBSController {
                 company: descriptionLines[0].replace("Marca: ", ""),
                 code: descriptionLines[1].replace("Código: ", ""),
                 price: parseFloat(descriptionLines[priceIndex].replace("Preço: ", "").replace(" €", "")).toFixed(2),
-                count: parseInt(descriptionLines.find(line => line.startsWith("Quantidade:")).replace("Quantidade: ", "")),
+                count: parseInt(descriptionLines[descriptionLines.length - 1].replace("Quantidade: ", "")),
                 isLashes: hasOptions,
                 info: {}
               };
