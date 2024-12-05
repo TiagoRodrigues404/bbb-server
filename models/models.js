@@ -183,9 +183,6 @@ UserOrder.belongsTo(User);
 User.hasMany(UserAddress, { as: 'address' });
 UserAddress.belongsTo(User);
 
-User.hasMany(PaymentInformation, { as: 'transaction' });
-PaymentInformation.belongsTo(User);
-
 UserOrder.hasMany(OrderItem, { as: 'item' });
 OrderItem.belongsTo(UserOrder);
 
