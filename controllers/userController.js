@@ -97,7 +97,6 @@ class UserController {
           model: UserAddress,
           as: 'address',
         },
-        { model: PaymentInformation, as: 'transaction' },
       ],
     };
     if (id) {
