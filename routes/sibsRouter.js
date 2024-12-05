@@ -3,6 +3,7 @@ const router = new Router();
 const sibsController = require('../controllers/sibsController');
 
 router.post('/', sibsController.Form);
+router.get('/', sibsController.getAll);
 router.get('/formHandler', sibsController.FormHandler);
 router.post('/saveOrder', sibsController.SaveOrder);
 router.post('/Hook', sibsController.Confirmed);
