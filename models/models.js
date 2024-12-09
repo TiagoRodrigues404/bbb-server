@@ -87,6 +87,7 @@ const Brand = sequelize.define('brand', {
   id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
   name: { type: DataTypes.STRING, unique: true, allowNull: false },
   img: { type: DataTypes.STRING, allowNull: false },
+  discount: { type: DataTypes.NUMBER, allowNull: true },
 });
 
 const Rating = sequelize.define('rating', {
@@ -152,23 +153,26 @@ const PaymentDetails = sequelize.define('payment', {
   type: { type: DataTypes.STRING, allowNull: false },
 });
 
-const PaymentInformation = sequelize.define('PaymentInformation', {
-  transactionID: {type: DataTypes.STRING, primaryKey: true, allowNull: false},
-  transactionSignature: {type: DataTypes.STRING, allowNull: false},
-  orderID: {type: DataTypes.STRING, allowNull: false},
-  customerName: {type: DataTypes.STRING, allowNull: false},
-  customerEmail: {type: DataTypes.STRING, allowNull: false},
-  amount: {type: DataTypes.DOUBLE, allowNull: false},
-  paymentMethod: {type: DataTypes.STRING, allowNull: true},
-  paymentStatus: {type: DataTypes.STRING, allowNull: true},
-  startTime: {type: DataTypes.DATE, allowNull: false},
-  phoneNumber: {type: DataTypes.STRING, allowNull: true},
-  reference: {type: DataTypes.STRING, allowNull: true},
-  entity: {type: DataTypes.STRING, allowNull: true}
-}, {
-  timestamps: false
-});
-
+const PaymentInformation = sequelize.define(
+  'PaymentInformation',
+  {
+    transactionID: { type: DataTypes.STRING, primaryKey: true, allowNull: false },
+    transactionSignature: { type: DataTypes.STRING, allowNull: false },
+    orderID: { type: DataTypes.STRING, allowNull: false },
+    customerName: { type: DataTypes.STRING, allowNull: false },
+    customerEmail: { type: DataTypes.STRING, allowNull: false },
+    amount: { type: DataTypes.DOUBLE, allowNull: false },
+    paymentMethod: { type: DataTypes.STRING, allowNull: true },
+    paymentStatus: { type: DataTypes.STRING, allowNull: true },
+    startTime: { type: DataTypes.DATE, allowNull: false },
+    phoneNumber: { type: DataTypes.STRING, allowNull: true },
+    reference: { type: DataTypes.STRING, allowNull: true },
+    entity: { type: DataTypes.STRING, allowNull: true },
+  },
+  {
+    timestamps: false,
+  }
+);
 
 User.hasOne(Basket);
 Basket.belongsTo(User);
@@ -253,5 +257,5 @@ module.exports = {
   ProductApplying,
   PaymentDetails,
   DeliveryPrice,
-  PaymentInformation
+  PaymentInformation,
 };
